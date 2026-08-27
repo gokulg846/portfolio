@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+export const dynamic = "force-static";
+
 type PrdSection = { title: string; body?: string; items?: string[] };
 type CaseStudy = {
   id: string;
@@ -763,7 +765,7 @@ export default function Home() {
             <div className="education-rule" />
             <h3>B.Tech, Mechanical Engineering</h3>
             <p>SASTRA University</p>
-            <a href="/Gokul_Gopalakrishnan_Resume.pdf" className="primary-button" download>Download résumé <span>↓</span></a>
+            <a href="./Gokul_Gopalakrishnan_Resume.pdf" className="primary-button" download>Download résumé <span>↓</span></a>
           </div>
           <div className="timeline">
             {timeline.map(([date, company, role, copy], index) => (
@@ -782,7 +784,13 @@ export default function Home() {
         <div className="footer-meta"><span>GOKUL GOPALAKRISHNAN © 2026</span><span>DATA / ML × PHYSICAL SYSTEMS</span><a href="#top">BACK TO TOP ↑</a></div>
       </footer>
 
-      <div className={activeCase ? "drawer-backdrop active" : "drawer-backdrop"} onClick={() => setActiveCase(null)} aria-hidden={!activeCase} />
+      <button
+        type="button"
+        className={activeCase ? "drawer-backdrop active" : "drawer-backdrop"}
+        onClick={() => setActiveCase(null)}
+        aria-label="Close case study"
+        tabIndex={activeCase ? 0 : -1}
+      />
       <aside className={activeCase ? "prd-drawer active" : "prd-drawer"} aria-hidden={!activeCase} aria-label="Product requirements document">
         {activeCase && (
           <>

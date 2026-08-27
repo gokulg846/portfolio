@@ -217,7 +217,7 @@ footer h2 { font-size: clamp(50px, 7vw, 104px); letter-spacing: -.07em; line-hei
 footer > a { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; border-top: 1px solid rgba(8,17,31,.45); border-bottom: 1px solid rgba(8,17,31,.45); font: 700 13px/1 var(--mono); }
 .footer-meta { display: flex; justify-content: space-between; margin-top: 90px; font: 9px/1 var(--mono); }
 
-.drawer-backdrop { position: fixed; inset: 0; background: rgba(2,8,16,.78); z-index: 100; opacity: 0; pointer-events: none; transition: opacity .28s ease; }
+.drawer-backdrop { position: fixed; inset: 0; padding: 0; border: 0; background: rgba(2,8,16,.78); z-index: 100; opacity: 0; pointer-events: none; transition: opacity .28s ease; }
 .drawer-backdrop.active { opacity: 1; pointer-events: auto; }
 .prd-drawer { position: fixed; right: 0; top: 0; width: min(760px, 92vw); height: 100dvh; background: var(--paper); color: var(--ink); z-index: 110; transform: translateX(101%); transition: transform .34s cubic-bezier(.22,.8,.22,1); overflow-y: auto; box-shadow: -30px 0 70px rgba(0,0,0,.35); }
 .prd-drawer.active { transform: translateX(0); }
