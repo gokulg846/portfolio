@@ -16,15 +16,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Gokul Gopalakrishnan — AI PM / TPM / Product Engineer",
-  description: "Product decisions, technical requirements, and system tradeoffs at the seam between data/ML and physical systems.",
+  title: "Gokul Gopalakrishnan — Data, AI & Engineering Product Portfolio",
+  description: "Evidence-backed product decisions across data systems, AI evaluation, edge engineering, and technical program delivery.",
   icons: {
     icon: `${siteUrl}favicon.svg`,
     shortcut: `${siteUrl}favicon.svg`,
   },
   openGraph: {
-    title: "Gokul Gopalakrishnan — AI systems meet physical reality",
-    description: "AI PM, TPM, and product engineering case studies across evaluation, telemetry, inspection, robotics, and edge AI.",
+    title: "Gokul Gopalakrishnan — Data, AI & Engineering Product Portfolio",
+    description: "Evidence-backed product decisions across data systems, AI evaluation, telemetry, inspection, robotics, and edge engineering.",
     url: siteUrl,
     siteName: "Gokul Gopalakrishnan",
     type: "website",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gokul Gopalakrishnan — AI systems meet physical reality",
-    description: "Product and technical program decisions for data/ML systems that meet physical hardware.",
+    title: "Gokul Gopalakrishnan — Data, AI & Engineering Product Portfolio",
+    description: "Product judgment backed by data, ML, and systems engineering evidence.",
     images: [`${siteUrl}og.png`],
   },
 };

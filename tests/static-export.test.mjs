@@ -8,6 +8,9 @@ test("exports the portfolio and public assets for GitHub Pages", async () => {
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
 
   assert.match(html, /Gokul Gopalakrishnan/);
+  assert.match(html, /engineering constraints/);
+  assert.match(html, /SELF-REPORTED INTERNAL RESULT/);
+  assert.doesNotMatch(html, /AI PM \/ TPM \/ PRODUCT ENGINEER/);
   assert.match(html, /\/portfolio\/_next\//);
 
   const assetPaths = [
