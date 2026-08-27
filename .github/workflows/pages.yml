@@ -36,9 +36,6 @@ jobs:
       - name: Build static site
         run: npm run build:pages
 
-      - name: Disable Jekyll processing
-        run: touch dist/client/.nojekyll
-
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v4
         with:

@@ -10,6 +10,13 @@ test("exports the portfolio and public assets for GitHub Pages", async () => {
   assert.match(html, /Gokul Gopalakrishnan/);
   assert.match(html, /\/portfolio\/_next\//);
 
+  const assetPaths = [
+    ...html.matchAll(/(?:href|src)="\/portfolio\/([^"?#]+)/g),
+  ].map((match) => match[1]);
+
+  assert.ok(assetPaths.length > 0, "expected exported CSS and JavaScript assets");
+  await Promise.all(assetPaths.map((path) => access(new URL(path, outputRoot))));
+
   await Promise.all([
     access(new URL("Gokul_Gopalakrishnan_Resume.pdf", outputRoot)),
     access(new URL("favicon.svg", outputRoot)),
