@@ -16,25 +16,25 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Gokul Gopalakrishnan — Data, AI & Engineering Product Portfolio",
-  description: "Evidence-backed product decisions across data systems, AI evaluation, edge engineering, and technical program delivery.",
+  title: "Gokul Gopalakrishnan — Technical Product Builder",
+  description: "I solve technical problems and deliver products that work—across data, AI, engineering, and product execution.",
   icons: {
     icon: `${siteUrl}favicon.svg`,
     shortcut: `${siteUrl}favicon.svg`,
   },
   openGraph: {
-    title: "Gokul Gopalakrishnan — Data, AI & Engineering Product Portfolio",
-    description: "Evidence-backed product decisions across data systems, AI evaluation, telemetry, inspection, robotics, and edge engineering.",
+    title: "Gokul Gopalakrishnan — Technical Product Builder",
+    description: "I solve technical problems and deliver products that work.",
     url: siteUrl,
     siteName: "Gokul Gopalakrishnan",
     type: "website",
-    images: [{ url: `${siteUrl}og.png`, width: 1731, height: 909, alt: "Gokul Gopalakrishnan — AI systems meet physical reality" }],
+    images: [{ url: `${siteUrl}og-v2.png`, width: 1730, height: 909, alt: "Gokul Gopalakrishnan — technical product builder across data, AI, and engineering" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gokul Gopalakrishnan — Data, AI & Engineering Product Portfolio",
-    description: "Product judgment backed by data, ML, and systems engineering evidence.",
-    images: [`${siteUrl}og.png`],
+    title: "Gokul Gopalakrishnan — Technical Product Builder",
+    description: "I solve technical problems and deliver products that work.",
+    images: [`${siteUrl}og-v2.png`],
   },
 };
 
