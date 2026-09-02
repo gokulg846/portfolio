@@ -1,4 +1,6 @@
 import type { ProjectCaseStudy } from "../types";
+import { complianceArtifacts } from "./continuous-compliance-gate";
+import { manufacturingArtifacts } from "./manufacturing-quality-traceability";
 
 export const projects: ProjectCaseStudy[] = [
   {
@@ -21,7 +23,7 @@ export const projects: ProjectCaseStudy[] = [
       "The current interface supports investigation; it does not trigger or export a production containment action.",
       "Composite scores and thresholds have not been calibrated by a plant quality team.",
     ],
-    artifacts: [],
+    artifacts: manufacturingArtifacts,
   },
   {
     slug: "industrial-sensor-anomaly-detection",
@@ -65,7 +67,7 @@ export const projects: ProjectCaseStudy[] = [
       "The rule library covers labels and exposed ports, not a complete container-security program.",
       "Exception ownership, signed policy distribution, CI rollout, and evidence retention are future product work.",
     ],
-    artifacts: [],
+    artifacts: complianceArtifacts,
   },
   {
     slug: "semiconductor-yield-analytics",
