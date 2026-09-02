@@ -18,6 +18,7 @@ export const projects: ProjectCaseStudy[] = [
     stage: "Working local prototype · synthetic manufacturing data",
     owned: "Product framing, source contracts, traceability model, ingestion, transformations, quality gates, and investigation interface.",
     decision: "Preserve source evidence first, then publish one tested part-level view instead of hiding the joins inside a dashboard.",
+    nextValidation: "Run one blinded historical containment case and reconcile completeness, false inclusions, and false exclusions with a quality engineer.",
     stack: ["Python", "Prefect", "Parquet", "dbt", "DuckDB", "Streamlit"],
     repository: "https://github.com/gokulg846/Manufacturing-quality-traceabilty",
     limitations: [
@@ -40,6 +41,7 @@ export const projects: ProjectCaseStudy[] = [
     stage: "Working ML prototype · public CWRU bearing data · evaluation reproduction required",
     owned: "Data ingestion, windowing, feature engineering, detector comparison, threshold policy, evaluation path, and Streamlit review workflow.",
     decision: "Train on healthy history, split overlapping windows contiguously, and compare an interpretable feature detector with a raw-waveform autoencoder.",
+    nextValidation: "Publish a pinned run manifest, held-out slice report, failure examples, and reviewer task study before making model-quality claims.",
     stack: ["Python", "NumPy", "Pandas", "SciPy", "scikit-learn", "TensorFlow/Keras", "Joblib", "Streamlit", "Matplotlib"],
     repository: "https://github.com/gokulg846/industry-sensor-anomaly-detection",
     limitations: [
@@ -62,6 +64,7 @@ export const projects: ProjectCaseStudy[] = [
     stage: "Working CLI prototype · deterministic rules · controlled Docker demo",
     owned: "Product boundary, policy contract, modular audit architecture, failure behavior, structured reporting, tests, and controlled demo scenarios.",
     decision: "Keep policy outside the engine and fail invalid governance input before inspecting infrastructure.",
+    nextValidation: "Run an advisory CI pilot with labeled scenarios, policy-owner review, and a time-bounded exception workflow before blocking releases.",
     stack: ["Python", "Docker SDK", "JSON", "CLI/daemon", "Docker Compose"],
     repository: "https://github.com/gokulg846/AI-Continuous-Compliance",
     limitations: [
@@ -84,6 +87,7 @@ export const projects: ProjectCaseStudy[] = [
     stage: "Working local prototype · causally linked synthetic fab data",
     owned: "Product workflow, causal simulation design, source grains, medallion model, data-quality gates, and four investigation views.",
     decision: "Generate linked process-to-yield storylines so the prototype can test an investigation workflow without pretending to discover causes in real fab data.",
+    nextValidation: "Freeze the workflow, evaluate hidden synthetic scenarios, and replay it on authorized external data with a domain reviewer.",
     stack: ["Python", "Prefect", "Parquet", "dbt", "DuckDB", "Streamlit", "Plotly"],
     repository: "https://github.com/gokulg846/Semiconductor-wafer-yield-analysis-pipeline",
     limitations: [
