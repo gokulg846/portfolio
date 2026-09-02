@@ -45,12 +45,17 @@ button, input { font: inherit; }
 .hero-actions { display: flex; align-items: center; gap: 28px; margin-top: 38px; }
 .primary-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; padding: 17px 20px; background: var(--accent); color: var(--ink); font: 750 11px/1 var(--mono); letter-spacing: .06em; }
 .primary-button:hover { background: #ffc14f; }
+.secondary-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; padding: 16px 19px; border: 1px solid var(--line-strong); color: #d7dfe8; font: 750 11px/1 var(--mono); letter-spacing: .05em; }
+.secondary-button:hover { border-color: var(--accent); color: var(--accent); }
 .text-link { padding-bottom: 6px; border-bottom: 1px solid var(--line-strong); color: #d7dfe8; font: 700 11px/1 var(--mono); }
+.proof-label { margin: 0 0 12px; color: var(--muted); font: 700 9px/1 var(--mono); letter-spacing: .12em; }
 .proof-rail { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.proof-rail > div { min-height: 138px; padding: 22px; border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+.proof-rail > a { min-height: 164px; padding: 22px; border-right: 1px solid var(--line); display: flex; flex-direction: column; transition: background .18s ease, transform .18s ease; }
+.proof-rail > a:hover, .proof-rail > a:focus-visible { background: rgba(243,167,18,.08); transform: translateY(-3px); outline: 1px solid var(--accent); outline-offset: -1px; }
 .proof-rail b { color: var(--accent); font: 520 clamp(26px, 2.7vw, 42px)/1 var(--mono); letter-spacing: -.06em; }
 .proof-rail span { margin-top: 10px; color: #d4dde7; font-size: 12px; line-height: 1.4; }
 .proof-rail small { margin-top: auto; padding-top: 16px; color: #aebccc; font: 700 9px/1.35 var(--mono); letter-spacing: .06em; }
+.proof-rail em { margin-top: 10px; color: var(--accent); font: 700 9px/1 var(--mono); letter-spacing: .04em; font-style: normal; }
 
 .section-shell { padding: 112px clamp(22px, 5vw, 76px); border-top: 1px solid var(--line); }
 .section-label { display: grid; grid-template-columns: 52px 1fr; margin-bottom: 68px; color: var(--muted); font: 700 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
@@ -160,7 +165,7 @@ footer h2 { max-width: 1200px; margin: 30px 0 74px; font-size: clamp(48px, 7vw, 
   .hero-grid { padding: 64px 0; }
   .hero h1 { font-size: clamp(45px, 14vw, 66px); }
   .proof-rail { grid-template-columns: 1fr 1fr; }
-  .proof-rail > div { min-height: 132px; }
+  .proof-rail > a { min-height: 150px; }
   .section-shell { padding-top: 82px; padding-bottom: 82px; }
   .section-label { margin-bottom: 46px; }
   .section-head, .experience-head, .evidence-head { margin-bottom: 52px; }
@@ -183,7 +188,7 @@ footer h2 { max-width: 1200px; margin: 30px 0 74px; font-size: clamp(48px, 7vw, 
 
 @media (max-width: 460px) {
   .proof-rail { grid-template-columns: 1fr; }
-  .hero-actions { align-items: flex-start; flex-direction: column; gap: 22px; }
+  .hero-actions { align-items: flex-start; flex-direction: column; gap: 16px; }
   .trajectory { align-items: flex-start; flex-direction: column; }
   .trajectory i { transform: rotate(90deg); }
 }
