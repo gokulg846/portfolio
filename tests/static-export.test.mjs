@@ -44,15 +44,20 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   const html = await exportedHtml();
 
   assert.match(html, /Gokul Gopalakrishnan/);
-  assert.match(html, /PRODUCT OWNERSHIP · ENGINEERING DEPTH/);
+  assert.match(html, /I BUILD · I ALIGN · I DELIVER/);
   assert.match(html, /I solve technical problems and deliver products that work/);
-  assert.match(html, /Who it serves\. What it changes\. How it holds up\./);
+  assert.match(html, /Products built around real engineering work\./);
+  assert.match(html, /AI-native/);
+  assert.match(html, /document ingestion and traceable decision workflows/);
+  assert.match(html, /href="#experience-risingphoenix"/);
+  assert.doesNotMatch(html, /users interviewed before MVP definition/i);
+  assert.doesNotMatch(html, /WHAT I OWNED|NEXT VALIDATION/);
   assert.match(html, /The code shows what runs\. The artifacts show how I lead\./);
 
   for (const anchor of [
     "experience-cummins-rag",
     "experience-cummins-validation",
-    "experience-purdue-bayer",
+    "experience-risingphoenix",
     "experience-accenture-iot",
   ]) {
     assert.match(html, new RegExp(`href="#${anchor}"`));
@@ -74,7 +79,6 @@ test("exports all project overviews and every published operating artifact", asy
     assert.match(projectHtml, /PRIMARY USER/);
     assert.match(projectHtml, /JOB TO BE DONE/);
     assert.match(projectHtml, /VALUE HYPOTHESIS/);
-    assert.match(projectHtml, /WHAT I OWNED/);
     assert.match(projectHtml, /KEY PRODUCT DECISION/);
     assert.match(projectHtml, /CURRENT LIMITS/);
 

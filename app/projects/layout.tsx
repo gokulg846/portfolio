@@ -13,7 +13,7 @@ export default function ProjectsLayout({ children }: Readonly<{ children: React.
       </nav>
       {children}
       <footer className="case-footer">
-        <p>GOKUL GOPALAKRISHNAN · PRODUCT OWNERSHIP · ENGINEERING DEPTH</p>
+        <p>GOKUL GOPALAKRISHNAN · DATA · AI · ENGINEERING · PRODUCT EXECUTION</p>
         <a href={sitePath("/#projects")}>Return to product work ↑</a>
       </footer>
     </div>
