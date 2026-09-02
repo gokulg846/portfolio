@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projects } from "../../../../content/projects/catalog";
+import { projectBySlug } from "../../../../content/projects/catalog";
 import { ArtifactPage, artifactMetadata } from "../../artifact-page";
 
-const project = projects[1];
+const project = projectBySlug["industrial-sensor-anomaly-detection"];
 type Props = { params: Promise<{ artifact: string }> };
 
 export const dynamic = "force-static";
