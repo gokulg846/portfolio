@@ -119,7 +119,7 @@ export default function Home() {
       <header className="hero" id="top">
         <div className="hero-meta"><span>PRODUCT EXECUTION · DATA · AI · ENGINEERING</span><span>WEST LAFAYETTE, IN · OPEN TO RELOCATION</span></div>
         <div className="hero-grid">
-          <div><p className="hero-kicker"><i aria-hidden="true" />I BUILD · I ALIGN · I DELIVER</p><h1>I solve technical problems and deliver products that work.</h1></div>
+          <div><h1>I solve technical problems and deliver products that work.</h1></div>
           <div className="hero-copy"><p>I bring a mechanical-engineering foundation and 3+ years of experience across automotive manufacturing, technology consulting, and an early-stage AI startup. I’ve built validation programs, industrial data and ML systems, computer-vision workflows, and internal AI tools.</p><p>I work where product and engineering meet: turning ambiguous problems into requirements, aligning the technical work, and staying through validation and release.</p><div className="hero-actions"><a className="primary-button" href="#projects">Explore product work <span>↓</span></a><a className="secondary-button" href="#experience">See career impact <span>↓</span></a><a className="text-link" href="mailto:gokulg846@gmail.com">Email me</a></div></div>
         </div>
         <p className="proof-label">SELECTED CAREER IMPACT</p>
@@ -132,17 +132,30 @@ export default function Home() {
       </header>
 
       <section className="section-shell projects" id="projects" aria-labelledby="projects-title">
-        <div className="section-label"><span>01</span><p>Product case studies</p></div>
         <div className="section-head"><h2 id="projects-title">Products built around real engineering work.</h2><p>Each project starts with a difficult engineering decision. The case study explains the pain point, the workflow I built, and the product and technical choices behind it.</p></div>
         <div className="product-list">
           {projects.map((project) => {
             const prd = project.artifacts.find((artifact) => artifact.slug === "prd");
             return <article className="product-card" key={project.slug}>
-              <header><span className="build-number">{project.number}</span><div><p className="product-stage">{project.stage}</p><p className="eyebrow">{project.category}</p><h3>{project.cardTitle}</h3><p className="build-summary">{project.summary}</p></div></header>
-              <div className="product-facts">
-                <div><span>BUILT FOR</span><p>{project.audience}</p></div><div><span>THE PAIN</span><p>{project.pain}</p></div><div className="product-function"><span>WHAT THE PRODUCT DOES</span><p>{project.whatItDoes}</p></div><div><span>VALUE HYPOTHESIS</span><p>{project.value}</p></div><div className="product-decision"><span>KEY PRODUCT DECISION</span><p>{project.decision}</p></div>
-              </div>
-              <div className="product-footer"><div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="product-links"><a href={sitePath(`/projects/${project.slug}/`)}>Explore case study →</a>{prd && <a href={sitePath(`/projects/${project.slug}/${prd.slug}/`)}>Read PRD →</a>}<a href={project.repository} target="_blank" rel="noreferrer">Source ↗</a></div></div>
+              <details className="product-disclosure">
+                <summary>
+                  <span className="build-number">{project.number}</span>
+                  <div className="product-card-summary">
+                    <p className="eyebrow">{project.category}</p>
+                    <h3>{project.title}</h3>
+                    <p className="build-summary">{project.summary}</p>
+                    <span className="product-expand"><span className="expand-closed">Show details +</span><span className="expand-open">Hide details −</span></span>
+                  </div>
+                </summary>
+                <div className="product-expanded">
+                  <p className="product-stage">{project.stage}</p>
+                  <div className="product-facts">
+                    <div><span>BUILT FOR</span><p>{project.audience}</p></div><div><span>THE PAIN</span><p>{project.pain}</p></div><div className="product-function"><span>WHAT THE PRODUCT DOES</span><p>{project.whatItDoes}</p></div><div><span>VALUE HYPOTHESIS</span><p>{project.value}</p></div><div className="product-decision"><span>KEY PRODUCT DECISION</span><p>{project.decision}</p></div>
+                  </div>
+                  <div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
+                </div>
+              </details>
+              <div className="product-links"><a href={sitePath(`/projects/${project.slug}/`)}>View case study →</a>{prd && <a href={sitePath(`/projects/${project.slug}/${prd.slug}/`)}>Read PRD →</a>}<a href={project.repository} target="_blank" rel="noreferrer">Source ↗</a></div>
             </article>;
           })}
         </div>
@@ -166,7 +179,7 @@ export default function Home() {
         <div className="artifact-matrix-wrap"><table className="artifact-matrix"><thead><tr><th>PROJECT</th>{artifactGroups.map((group) => <th key={group.label}>{group.label}</th>)}</tr></thead><tbody>{projects.map((project) => <tr key={project.slug}><th><a href={sitePath(`/projects/${project.slug}/`)}>{project.title}</a></th>{artifactGroups.map((group) => { const matches = project.artifacts.filter((artifact) => group.slugs.includes(artifact.slug)); return <td key={group.label}>{matches.map((artifact) => <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>{artifact.label.includes("DEMO") ? "Demo guide" : artifact.title}</a>)}</td>; })}</tr>)}</tbody></table></div>
       </section>
 
-      <footer><span>LET’S BUILD SOMETHING USEFUL.</span><h2>Need a product owner who can work inside the technical details?</h2><div className="contact-links"><a href="mailto:gokulg846@gmail.com">Email <span>↗</span></a><a href="https://www.linkedin.com/in/gokulgopal" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/gokulg846" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href={sitePath("/Gokul_Gopalakrishnan_Resume.pdf")}>Data & AI résumé <span>↓</span></a><a href={sitePath("/Gokul_Gopalakrishnan_Technical_Program_Resume.pdf")}>Program résumé <span>↓</span></a></div><div className="footer-meta"><span>GOKUL GOPALAKRISHNAN</span><span>DATA · AI · ENGINEERING · PRODUCT EXECUTION</span></div></footer>
+      <footer><span>LET’S BUILD SOMETHING USEFUL.</span><h2>Need a technical product manager who can work inside the engineering details?</h2><div className="contact-links"><a href="mailto:gokulg846@gmail.com">Email <span>↗</span></a><a href="https://www.linkedin.com/in/gokulgopal" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/gokulg846" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href={sitePath("/Gokul_Gopalakrishnan_Resume.pdf")}>Data & AI résumé <span>↓</span></a><a href={sitePath("/Gokul_Gopalakrishnan_Technical_Program_Resume.pdf")}>Program résumé <span>↓</span></a></div><div className="footer-meta"><span>GOKUL GOPALAKRISHNAN</span><span>DATA · AI · ENGINEERING · PRODUCT EXECUTION</span></div></footer>
     </main>
   );
 }
