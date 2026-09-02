@@ -47,6 +47,7 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.doesNotMatch(html, /I BUILD · I ALIGN · I DELIVER/);
   assert.match(html, /I solve technical problems and deliver products that work/);
   assert.match(html, /Products built around real engineering work\./);
+  assert.match(html, /Product case studies/);
   assert.match(html, /AI-native/);
   assert.match(html, /document ingestion and traceable decision workflows/);
   assert.equal((html.match(/class="product-card"/g) ?? []).length, 4);
