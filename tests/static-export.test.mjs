@@ -136,6 +136,29 @@ test("exports representative PM, technical, delivery, and validation evidence", 
   }
 });
 
+test("exports decision-ready PRDs for all four projects", async () => {
+  for (const project of Object.keys(projectArtifacts)) {
+    const html = (await exportedHtml(`projects/${project}/prd/index.html`)).replaceAll("<!-- -->", "");
+    for (const section of [
+      "Product brief",
+      "Artifact status and provenance",
+      "Problem evidence and assumptions",
+      "Requirements and acceptance criteria",
+      "Metric tree",
+      "Failure",
+      "Rollout and decision gates",
+      "Open questions",
+    ]) {
+      assert.match(html, new RegExp(section, "i"));
+    }
+    assert.match(html, /Hypothesized current workflow/);
+    assert.match(html, /Retrospective portfolio PRD/);
+    assert.match(html, /Source commit/);
+    assert.match(html, /Product owner/);
+    assert.match(html, /Baseline \/ target/);
+  }
+});
+
 test("exports GitHub Pages assets and public files", async () => {
   const html = await exportedHtml();
   const assetPaths = [
