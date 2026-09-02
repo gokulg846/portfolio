@@ -113,7 +113,7 @@ export default function Home() {
     <main>
       <nav className="site-nav" aria-label="Primary navigation">
         <a className="wordmark" href="#top" aria-label="Gokul Gopalakrishnan, home">Gokul Gopalakrishnan<span>.</span></a>
-        <div className="nav-links"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#artifacts">Artifacts</a><a className="nav-cta" href={sitePath("/Gokul_Gopalakrishnan_Resume.pdf")}>Résumé</a></div>
+        <div className="nav-links"><a href="#projects">Projects</a><a href="#artifacts">Artifacts</a><a href="#experience">Experience</a><a className="nav-cta" href={sitePath("/Gokul_Gopalakrishnan_Resume.pdf")}>Résumé</a></div>
       </nav>
 
       <header className="hero" id="top">
@@ -161,22 +161,22 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section-shell evidence" id="artifacts" aria-labelledby="artifacts-title">
+        <div className="section-label"><span>02</span><p>Product operating artifacts</p></div>
+        <div className="evidence-head"><h2 id="artifacts-title">The systems run. The artifacts make the product judgment visible.</h2><p>Each case study includes the work around the implementation: who it serves, why the scope was chosen, how delivery is managed, and what would justify a launch.</p></div>
+        <div className="artifact-capabilities">{artifactGroups.map((group) => <div key={group.label}><span>{group.label}</span><h3>{group.title}</h3><p>{group.description}</p></div>)}</div>
+        <div className="artifact-matrix-wrap"><table className="artifact-matrix"><thead><tr><th>PROJECT</th>{artifactGroups.map((group) => <th key={group.label}>{group.label}</th>)}</tr></thead><tbody>{projects.map((project) => <tr key={project.slug}><th><a href={sitePath(`/projects/${project.slug}/`)}>{project.title}</a></th>{artifactGroups.map((group) => { const matches = project.artifacts.filter((artifact) => group.slugs.includes(artifact.slug)); return <td key={group.label}>{matches.map((artifact) => <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>{artifact.label.includes("DEMO") ? "Demo guide" : artifact.title}</a>)}</td>; })}</tr>)}</tbody></table></div>
+      </section>
+
       <section className="section-shell approach" aria-labelledby="approach-title">
-        <div className="section-label"><span>02</span><p>How I execute</p></div>
+        <div className="section-label"><span>03</span><p>How I execute</p></div>
         <div className="approach-grid"><h2 id="approach-title">Start with the decision. Stay through delivery.</h2><ol><li><b>01</b><div><h3>Understand the workflow</h3><p>Use interviews, field returns, operating data, and existing failure modes to define the problem worth solving.</p></div></li><li><b>02</b><div><h3>Make scope explicit</h3><p>Translate the problem into users, requirements, non-goals, dependencies, and a testable first release.</p></div></li><li><b>03</b><div><h3>Build with the team</h3><p>Work close enough to data, models, software, and physical systems to make credible trade-offs.</p></div></li><li><b>04</b><div><h3>Prove what changed</h3><p>Separate implementation evidence from adoption and business outcomes—and make the next validation decision explicit.</p></div></li></ol></div>
       </section>
 
       <section className="section-shell experience" id="experience" aria-labelledby="experience-title">
-        <div className="section-label"><span>03</span><p>Career impact</p></div>
+        <div className="section-label"><span>04</span><p>Career impact</p></div>
         <div className="experience-head"><div><p className="eyebrow">BREADTH WITH A DIRECTION</p><h2 id="experience-title">Engineering depth, applied to product delivery.</h2></div><p>Selected programs show the operating problem, my ownership, the decision I made, and the result—followed by the technical depth behind the work.</p></div>
         <div className="experience-list">{experience.map((item, index) => <article className="experience-card" id={item.id} key={item.company}><div className="experience-meta"><span>{String(index + 1).padStart(2, "0")}</span><time>{item.period}</time></div><div className="experience-copy"><h3>{item.company}</h3><b>{item.role}</b><p>{item.summary}</p>{item.work.length > 0 && <ul>{item.work.map((line) => <li key={line}>{line}</li>)}</ul>}{item.projects.map((project) => <section className="experience-project" id={project.id} key={project.id} aria-labelledby={`${project.id}-title`}><p className="experience-project-kicker">{project.kicker}</p><h4 id={`${project.id}-title`}>{project.title}</h4><div className="experience-project-grid"><div><span>CHALLENGE</span><p>{project.challenge}</p></div><div><span>MY OWNERSHIP</span><p>{project.ownership}</p></div><div><span>KEY DECISION</span><p>{project.decision}</p></div><div className="experience-outcome"><span>RESULT</span><p>{project.outcome}</p></div></div><div className="experience-tech"><span>TECHNICAL DEPTH</span>{project.technical.map((technicalItem) => <b key={technicalItem}>{technicalItem}</b>)}</div></section>)}{item.supporting.length > 0 && <div className="supporting-work"><span>ADDITIONAL OWNERSHIP</span><ul>{item.supporting.map((line) => <li key={line}>{line}</li>)}</ul></div>}</div></article>)}</div>
-      </section>
-
-      <section className="section-shell evidence" id="artifacts" aria-labelledby="artifacts-title">
-        <div className="section-label"><span>04</span><p>Product operating artifacts</p></div>
-        <div className="evidence-head"><h2 id="artifacts-title">The code shows what runs. The artifacts show how I lead.</h2><p>Each case study includes the work around the implementation: who it serves, why the scope was chosen, how delivery is managed, and what would justify a launch.</p></div>
-        <div className="artifact-capabilities">{artifactGroups.map((group) => <div key={group.label}><span>{group.label}</span><h3>{group.title}</h3><p>{group.description}</p></div>)}</div>
-        <div className="artifact-matrix-wrap"><table className="artifact-matrix"><thead><tr><th>PROJECT</th>{artifactGroups.map((group) => <th key={group.label}>{group.label}</th>)}</tr></thead><tbody>{projects.map((project) => <tr key={project.slug}><th><a href={sitePath(`/projects/${project.slug}/`)}>{project.title}</a></th>{artifactGroups.map((group) => { const matches = project.artifacts.filter((artifact) => group.slugs.includes(artifact.slug)); return <td key={group.label}>{matches.map((artifact) => <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>{artifact.label.includes("DEMO") ? "Demo guide" : artifact.title}</a>)}</td>; })}</tr>)}</tbody></table></div>
       </section>
 
       <footer><span>LET’S BUILD SOMETHING USEFUL.</span><h2>Need a technical product manager who can work inside the engineering details?</h2><div className="contact-links"><a href="mailto:gokulg846@gmail.com">Email <span>↗</span></a><a href="https://www.linkedin.com/in/gokulgopal" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/gokulg846" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href={sitePath("/Gokul_Gopalakrishnan_Resume.pdf")}>Data & AI résumé <span>↓</span></a><a href={sitePath("/Gokul_Gopalakrishnan_Technical_Program_Resume.pdf")}>Program résumé <span>↓</span></a></div><div className="footer-meta"><span>GOKUL GOPALAKRISHNAN</span><span>DATA · AI · ENGINEERING · PRODUCT EXECUTION</span></div></footer>

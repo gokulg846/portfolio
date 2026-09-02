@@ -59,7 +59,9 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /href="#experience-risingphoenix"/);
   assert.doesNotMatch(html, /users interviewed before MVP definition/i);
   assert.doesNotMatch(html, /WHAT I OWNED|NEXT VALIDATION/);
-  assert.match(html, /The code shows what runs\. The artifacts show how I lead\./);
+  assert.match(html, /The systems run\. The artifacts make the product judgment visible\./);
+  assert.ok(html.indexOf('id="artifacts"') < html.indexOf('class="section-shell approach"'));
+  assert.ok(html.indexOf('id="artifacts"') < html.indexOf('id="experience"'));
 
   for (const anchor of [
     "experience-cummins-rag",
