@@ -1,6 +1,8 @@
 import type { ProjectCaseStudy } from "../types";
 import { complianceArtifacts } from "./continuous-compliance-gate";
+import { sensorArtifacts } from "./industrial-sensor-anomaly-detection";
 import { manufacturingArtifacts } from "./manufacturing-quality-traceability";
+import { waferArtifacts } from "./semiconductor-yield-analytics";
 
 export const projects: ProjectCaseStudy[] = [
   {
@@ -45,7 +47,7 @@ export const projects: ProjectCaseStudy[] = [
       "Homepage model metrics remain withheld until a pinned run and evaluation artifact are reproduced.",
       "The current dashboard is a review aid; maintenance decisions remain human-owned.",
     ],
-    artifacts: [],
+    artifacts: sensorArtifacts,
   },
   {
     slug: "continuous-compliance-gate",
@@ -89,7 +91,7 @@ export const projects: ProjectCaseStudy[] = [
       "The views support hypothesis formation; they do not prove physical causality.",
       "SPC limits and interpretations have not been validated by a production yield team.",
     ],
-    artifacts: [],
+    artifacts: waferArtifacts,
   },
 ];
 
