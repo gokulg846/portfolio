@@ -44,11 +44,17 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   const html = await exportedHtml();
 
   assert.match(html, /Gokul Gopalakrishnan/);
-  assert.match(html, /I BUILD · I ALIGN · I DELIVER/);
+  assert.doesNotMatch(html, /I BUILD · I ALIGN · I DELIVER/);
   assert.match(html, /I solve technical problems and deliver products that work/);
   assert.match(html, /Products built around real engineering work\./);
   assert.match(html, /AI-native/);
   assert.match(html, /document ingestion and traceable decision workflows/);
+  assert.equal((html.match(/class="product-card"/g) ?? []).length, 4);
+  assert.equal((html.match(/class="product-disclosure"/g) ?? []).length, 4);
+  assert.match(html, /Show details \+/);
+  assert.match(html, /View case study →/);
+  assert.match(html, /Read PRD →/);
+  assert.doesNotMatch(html, /Need a product owner/i);
   assert.match(html, /href="#experience-risingphoenix"/);
   assert.doesNotMatch(html, /users interviewed before MVP definition/i);
   assert.doesNotMatch(html, /WHAT I OWNED|NEXT VALIDATION/);
