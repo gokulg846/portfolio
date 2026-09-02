@@ -11,6 +11,7 @@ export type ArtifactSection = {
   body?: string[];
   bullets?: string[];
   table?: ArtifactTable;
+  code?: string;
 };
 
 export type ProjectArtifact = {
