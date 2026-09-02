@@ -22,11 +22,15 @@ export function ProjectPage({ project }: { project: ProjectCaseStudy }) {
         <div className="case-stage">{project.stage}</div>
       </header>
 
+      <section className="case-story" aria-label="Product story">
+        <div><span>THE PAIN</span><h2>{project.pain}</h2></div>
+        <div><span>WHAT THE PRODUCT DOES</span><h2>{project.whatItDoes}</h2></div>
+      </section>
+
       <section className="case-snapshot" aria-label="Product snapshot">
         <div><span>PRIMARY USER</span><p>{project.audience}</p></div>
         <div><span>JOB TO BE DONE</span><p>{project.job}</p></div>
         <div><span>VALUE HYPOTHESIS</span><p>{project.value}</p></div>
-        <div><span>WHAT I OWNED</span><p>{project.owned}</p></div>
       </section>
 
       <section className="case-decision">
@@ -52,9 +56,9 @@ export function ProjectPage({ project }: { project: ProjectCaseStudy }) {
             <h2>The work around the build.</h2>
           </div>
           <div className="artifact-list">
-            {project.artifacts.map((artifact) => (
+            {project.artifacts.map((artifact, index) => (
               <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>
-                <span>{artifact.label}</span><h3>{artifact.title}</h3><p>{artifact.summary}</p><b>Read artifact →</b>
+                <span>{String(index + 1).padStart(2, "0")} · {artifact.label}</span><h3>{artifact.title}</h3><p>{artifact.summary}</p><b>Read artifact →</b>
               </a>
             ))}
           </div>

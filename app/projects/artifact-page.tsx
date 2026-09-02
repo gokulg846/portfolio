@@ -12,6 +12,12 @@ export function artifactMetadata(project: ProjectCaseStudy, artifact: ProjectArt
 }
 
 export function ArtifactPage({ project, artifact }: { project: ProjectCaseStudy; artifact: ProjectArtifact }) {
+  const artifactIndex = project.artifacts.findIndex((item) => item.slug === artifact.slug);
+  const previousArtifact = artifactIndex > 0 ? project.artifacts[artifactIndex - 1] : undefined;
+  const nextArtifact = artifactIndex < project.artifacts.length - 1 ? project.artifacts[artifactIndex + 1] : undefined;
+  const artifactPath = (slug: string) => sitePath(`/projects/${project.slug}/${slug}/`);
+  const projectPath = sitePath(`/projects/${project.slug}/`);
+
   return (
     <main className="artifact-main">
       <header className="artifact-hero">
@@ -55,9 +61,18 @@ export function ArtifactPage({ project, artifact }: { project: ProjectCaseStudy;
         ))}
       </article>
 
-      <nav className="artifact-next" aria-label="Artifact navigation">
-        <a href={sitePath(`/projects/${project.slug}/`)}>Project overview</a>
-        <a href={project.repository} target="_blank" rel="noreferrer">Source repository ↗</a>
+      <nav className="artifact-navigation" aria-label="Artifact sequence">
+        <p className="artifact-position">Artifact {artifactIndex + 1} of {project.artifacts.length}</p>
+        <div className="artifact-pager">
+          <div>
+            {previousArtifact && <a href={artifactPath(previousArtifact.slug)} rel="prev" aria-label={`Previous artifact: ${previousArtifact.title}`}><span>← PREVIOUS ARTIFACT</span><strong>{previousArtifact.title}</strong></a>}
+          </div>
+          <a className="artifact-return" href={projectPath}>Return to case study ↑</a>
+          <div>
+            {nextArtifact && <a href={artifactPath(nextArtifact.slug)} rel="next" aria-label={`Next artifact: ${nextArtifact.title}`}><span>NEXT ARTIFACT →</span><strong>{nextArtifact.title}</strong></a>}
+          </div>
+        </div>
+        <a className="artifact-source-link" href={project.repository} target="_blank" rel="noreferrer">Inspect source repository ↗</a>
       </nav>
     </main>
   );

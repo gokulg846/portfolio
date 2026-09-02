@@ -76,17 +76,33 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
 test("exports all project overviews and every published operating artifact", async () => {
   for (const [project, artifacts] of Object.entries(projectArtifacts)) {
     const projectHtml = await exportedHtml(`projects/${project}/index.html`);
+    assert.match(projectHtml, /THE PAIN/);
+    assert.match(projectHtml, /WHAT THE PRODUCT DOES/);
     assert.match(projectHtml, /PRIMARY USER/);
     assert.match(projectHtml, /JOB TO BE DONE/);
     assert.match(projectHtml, /VALUE HYPOTHESIS/);
+    assert.doesNotMatch(projectHtml, /WHAT I OWNED/);
     assert.match(projectHtml, /KEY PRODUCT DECISION/);
     assert.match(projectHtml, /CURRENT LIMITS/);
 
-    for (const artifact of artifacts) {
+    for (const [artifactIndex, artifact] of artifacts.entries()) {
       const artifactHtml = await exportedHtml(
         `projects/${project}/${artifact}/index.html`,
       );
+      const normalizedArtifactHtml = artifactHtml.replaceAll("<!-- -->", "");
       assert.match(artifactHtml, /class="case-back"/);
+      assert.match(normalizedArtifactHtml, new RegExp(`Artifact ${artifactIndex + 1} of ${artifacts.length}`));
+      assert.match(artifactHtml, new RegExp(`href="/portfolio/projects/${project}/"`));
+      if (artifactIndex > 0) {
+        assert.match(artifactHtml, new RegExp(`href="/portfolio/projects/${project}/${artifacts[artifactIndex - 1]}/" rel="prev"`));
+      } else {
+        assert.doesNotMatch(artifactHtml, /rel="prev"/);
+      }
+      if (artifactIndex < artifacts.length - 1) {
+        assert.match(artifactHtml, new RegExp(`href="/portfolio/projects/${project}/${artifacts[artifactIndex + 1]}/" rel="next"`));
+      } else {
+        assert.doesNotMatch(artifactHtml, /rel="next"/);
+      }
       assert.doesNotMatch(
         artifactHtml,
         /resume-reported|technical product builder|chatgpt|signin-with-chatgpt|openai/i,
