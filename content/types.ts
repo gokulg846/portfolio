@@ -35,6 +35,7 @@ export type ProjectCaseStudy = {
   stage: string;
   owned: string;
   decision: string;
+  nextValidation: string;
   stack: string[];
   repository: string;
   limitations: string[];
