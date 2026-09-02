@@ -132,7 +132,7 @@ export default function Home() {
       </header>
 
       <section className="section-shell projects" id="projects" aria-labelledby="projects-title">
-        <div className="section-head"><h2 id="projects-title">Products built around real engineering work.</h2><p>Each project starts with a difficult engineering decision. The case study explains the pain point, the workflow I built, and the product and technical choices behind it.</p></div>
+        <div className="section-head"><div><p className="eyebrow">Product case studies</p><h2 id="projects-title">Products built around real engineering work.</h2></div><p>Each project starts with a difficult engineering decision. The case study explains the pain point, the workflow I built, and the product and technical choices behind it.</p></div>
         <div className="product-list">
           {projects.map((project) => {
             const prd = project.artifacts.find((artifact) => artifact.slug === "prd");
