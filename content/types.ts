@@ -30,12 +30,12 @@ export type ProjectCaseStudy = {
   cardTitle: string;
   summary: string;
   audience: string;
+  pain: string;
+  whatItDoes: string;
   job: string;
   value: string;
   stage: string;
-  owned: string;
   decision: string;
-  nextValidation: string;
   stack: string[];
   repository: string;
   limitations: string[];

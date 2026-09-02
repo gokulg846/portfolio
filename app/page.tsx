@@ -5,6 +5,7 @@ export const dynamic = "force-static";
 
 const experience = [
   {
+    id: "experience-risingphoenix",
     company: "RisingPhoenix.ai",
     role: "AI Product Engineer Intern",
     period: "Jul 2026 — present",
@@ -18,6 +19,7 @@ const experience = [
     supporting: [],
   },
   {
+    id: "experience-cummins",
     company: "Cummins",
     role: "Product Engineer Co-op",
     period: "Feb 2025 — Jan 2026",
@@ -52,6 +54,7 @@ const experience = [
     ],
   },
   {
+    id: "experience-purdue-bayer-role",
     company: "Purdue–Bayer Innovation",
     role: "Data Science Consultant",
     period: "Aug 2023 — Dec 2023",
@@ -72,6 +75,7 @@ const experience = [
     supporting: [],
   },
   {
+    id: "experience-accenture",
     company: "Accenture",
     role: "Analyst — Data & Analytics",
     period: "Jul 2021 — Jul 2023",
@@ -115,28 +119,28 @@ export default function Home() {
       <header className="hero" id="top">
         <div className="hero-meta"><span>PRODUCT EXECUTION · DATA · AI · ENGINEERING</span><span>WEST LAFAYETTE, IN · OPEN TO RELOCATION</span></div>
         <div className="hero-grid">
-          <div><p className="hero-kicker"><i aria-hidden="true" />PRODUCT OWNERSHIP · ENGINEERING DEPTH</p><h1>I solve technical problems and deliver products that work.</h1></div>
-          <div className="hero-copy"><p>I take ownership from problem definition through requirements, delivery, and validation—using data and AI to help engineering teams make better decisions.</p><div className="hero-actions"><a className="primary-button" href="#projects">Explore product work <span>↓</span></a><a className="secondary-button" href="#experience">See career impact <span>↓</span></a><a className="text-link" href="mailto:gokulg846@gmail.com">Email me</a></div></div>
+          <div><p className="hero-kicker"><i aria-hidden="true" />I BUILD · I ALIGN · I DELIVER</p><h1>I solve technical problems and deliver products that work.</h1></div>
+          <div className="hero-copy"><p>I bring a mechanical-engineering foundation and 3+ years of experience across automotive manufacturing, technology consulting, and an early-stage AI startup. I’ve built validation programs, industrial data and ML systems, computer-vision workflows, and internal AI tools.</p><p>I work where product and engineering meet: turning ambiguous problems into requirements, aligning the technical work, and staying through validation and release.</p><div className="hero-actions"><a className="primary-button" href="#projects">Explore product work <span>↓</span></a><a className="secondary-button" href="#experience">See career impact <span>↓</span></a><a className="text-link" href="mailto:gokulg846@gmail.com">Email me</a></div></div>
         </div>
         <p className="proof-label">SELECTED CAREER IMPACT</p>
         <div className="proof-rail" aria-label="Selected career impact">
           <a href="#experience-cummins-rag"><b>80%</b><span>faster documentation retrieval</span><small>INTERNAL GENAI KNOWLEDGE TOOL · CUMMINS</small><em aria-hidden="true">↓</em></a>
           <a href="#experience-cummins-validation"><b>5,000+</b><span>units in the potential warranty-risk scope</span><small>FIELD-DERIVED VALIDATION · CUMMINS</small><em aria-hidden="true">↓</em></a>
-          <a href="#experience-purdue-bayer"><b>20+</b><span>users interviewed before MVP definition</span><small>PRODUCT DISCOVERY · PURDUE–BAYER</small><em aria-hidden="true">↓</em></a>
+          <a href="#experience-risingphoenix"><b>AI-native</b><span>document ingestion and traceable decision workflows for security and compliance analysis</span><small>EARLY-STAGE GRC PLATFORM · RISINGPHOENIX.AI</small><em aria-hidden="true">↓</em></a>
           <a href="#experience-accenture-iot"><b>25%</b><span>downtime reduction across a 10,000+ sensor scope</span><small>INDUSTRIAL DATA & ML · ACCENTURE</small><em aria-hidden="true">↓</em></a>
         </div>
       </header>
 
       <section className="section-shell projects" id="projects" aria-labelledby="projects-title">
         <div className="section-label"><span>01</span><p>Product case studies</p></div>
-        <div className="section-head"><h2 id="projects-title">Who it serves. What it changes. How it holds up.</h2><p>Independent case studies showing the user decision, product scope, technical choices, delivery plan, and what still needs validation.</p></div>
+        <div className="section-head"><h2 id="projects-title">Products built around real engineering work.</h2><p>Each project starts with a difficult engineering decision. The case study explains the pain point, the workflow I built, and the product and technical choices behind it.</p></div>
         <div className="product-list">
           {projects.map((project) => {
             const prd = project.artifacts.find((artifact) => artifact.slug === "prd");
             return <article className="product-card" key={project.slug}>
               <header><span className="build-number">{project.number}</span><div><p className="product-stage">{project.stage}</p><p className="eyebrow">{project.category}</p><h3>{project.cardTitle}</h3><p className="build-summary">{project.summary}</p></div></header>
               <div className="product-facts">
-                <div><span>BUILT FOR</span><p>{project.audience}</p></div><div><span>THE DECISION</span><p>{project.job}</p></div><div><span>VALUE HYPOTHESIS</span><p>{project.value}</p></div><div><span>WHAT I OWNED</span><p>{project.owned}</p></div><div className="product-decision"><span>KEY PRODUCT DECISION</span><p>{project.decision}</p></div><div><span>NEXT VALIDATION</span><p>{project.nextValidation}</p></div>
+                <div><span>BUILT FOR</span><p>{project.audience}</p></div><div><span>THE PAIN</span><p>{project.pain}</p></div><div className="product-function"><span>WHAT THE PRODUCT DOES</span><p>{project.whatItDoes}</p></div><div><span>VALUE HYPOTHESIS</span><p>{project.value}</p></div><div className="product-decision"><span>KEY PRODUCT DECISION</span><p>{project.decision}</p></div>
               </div>
               <div className="product-footer"><div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="product-links"><a href={sitePath(`/projects/${project.slug}/`)}>Explore case study →</a>{prd && <a href={sitePath(`/projects/${project.slug}/${prd.slug}/`)}>Read PRD →</a>}<a href={project.repository} target="_blank" rel="noreferrer">Source ↗</a></div></div>
             </article>;
@@ -152,7 +156,7 @@ export default function Home() {
       <section className="section-shell experience" id="experience" aria-labelledby="experience-title">
         <div className="section-label"><span>03</span><p>Career impact</p></div>
         <div className="experience-head"><div><p className="eyebrow">BREADTH WITH A DIRECTION</p><h2 id="experience-title">Engineering depth, applied to product delivery.</h2></div><p>Selected programs show the operating problem, my ownership, the decision I made, and the result—followed by the technical depth behind the work.</p></div>
-        <div className="experience-list">{experience.map((item, index) => <article className="experience-card" key={item.company}><div className="experience-meta"><span>{String(index + 1).padStart(2, "0")}</span><time>{item.period}</time></div><div className="experience-copy"><h3>{item.company}</h3><b>{item.role}</b><p>{item.summary}</p>{item.work.length > 0 && <ul>{item.work.map((line) => <li key={line}>{line}</li>)}</ul>}{item.projects.map((project) => <section className="experience-project" id={project.id} key={project.id} aria-labelledby={`${project.id}-title`}><p className="experience-project-kicker">{project.kicker}</p><h4 id={`${project.id}-title`}>{project.title}</h4><div className="experience-project-grid"><div><span>CHALLENGE</span><p>{project.challenge}</p></div><div><span>MY OWNERSHIP</span><p>{project.ownership}</p></div><div><span>KEY DECISION</span><p>{project.decision}</p></div><div className="experience-outcome"><span>RESULT</span><p>{project.outcome}</p></div></div><div className="experience-tech"><span>TECHNICAL DEPTH</span>{project.technical.map((technicalItem) => <b key={technicalItem}>{technicalItem}</b>)}</div></section>)}{item.supporting.length > 0 && <div className="supporting-work"><span>ADDITIONAL OWNERSHIP</span><ul>{item.supporting.map((line) => <li key={line}>{line}</li>)}</ul></div>}</div></article>)}</div>
+        <div className="experience-list">{experience.map((item, index) => <article className="experience-card" id={item.id} key={item.company}><div className="experience-meta"><span>{String(index + 1).padStart(2, "0")}</span><time>{item.period}</time></div><div className="experience-copy"><h3>{item.company}</h3><b>{item.role}</b><p>{item.summary}</p>{item.work.length > 0 && <ul>{item.work.map((line) => <li key={line}>{line}</li>)}</ul>}{item.projects.map((project) => <section className="experience-project" id={project.id} key={project.id} aria-labelledby={`${project.id}-title`}><p className="experience-project-kicker">{project.kicker}</p><h4 id={`${project.id}-title`}>{project.title}</h4><div className="experience-project-grid"><div><span>CHALLENGE</span><p>{project.challenge}</p></div><div><span>MY OWNERSHIP</span><p>{project.ownership}</p></div><div><span>KEY DECISION</span><p>{project.decision}</p></div><div className="experience-outcome"><span>RESULT</span><p>{project.outcome}</p></div></div><div className="experience-tech"><span>TECHNICAL DEPTH</span>{project.technical.map((technicalItem) => <b key={technicalItem}>{technicalItem}</b>)}</div></section>)}{item.supporting.length > 0 && <div className="supporting-work"><span>ADDITIONAL OWNERSHIP</span><ul>{item.supporting.map((line) => <li key={line}>{line}</li>)}</ul></div>}</div></article>)}</div>
       </section>
 
       <section className="section-shell evidence" id="artifacts" aria-labelledby="artifacts-title">

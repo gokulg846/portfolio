@@ -16,23 +16,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Gokul Gopalakrishnan — Product Ownership & Engineering Depth",
+  title: "Gokul Gopalakrishnan — Technical Product Execution",
   description: "I solve technical problems and deliver products that work—across data, AI, engineering, and product execution.",
   icons: {
     icon: `${siteUrl}favicon.svg`,
     shortcut: `${siteUrl}favicon.svg`,
   },
   openGraph: {
-    title: "Gokul Gopalakrishnan — Product Ownership & Engineering Depth",
+    title: "Gokul Gopalakrishnan — Technical Product Execution",
     description: "I solve technical problems and deliver products that work.",
     url: siteUrl,
     siteName: "Gokul Gopalakrishnan",
     type: "website",
-    images: [{ url: `${siteUrl}og-v2.png`, width: 1730, height: 909, alt: "Gokul Gopalakrishnan — product ownership and engineering depth across data and AI" }],
+    images: [{ url: `${siteUrl}og-v2.png`, width: 1730, height: 909, alt: "Gokul Gopalakrishnan — technical product execution across data, AI, and engineering" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gokul Gopalakrishnan — Product Ownership & Engineering Depth",
+    title: "Gokul Gopalakrishnan — Technical Product Execution",
     description: "I solve technical problems and deliver products that work.",
     images: [`${siteUrl}og-v2.png`],
   },
