@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  trailingSlash: true,
+  trailingSlash: false,
   assetPrefix:
     process.env.GITHUB_PAGES_BUILD === "true" ? "/portfolio" : undefined,
 };
