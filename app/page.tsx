@@ -131,7 +131,8 @@ const experience = [
       "Implemented configurable AI harnesses and traceable workflows for reproducible testing, auditing, and governance.",
       "Built a reusable OWASP, CIS, and ISO knowledge layer for control mapping and compliance analysis.",
     ],
-    evidence: "RESPONSIBILITY-BASED · NO PUBLIC OUTCOME METRIC CLAIMED",
+    projects: [],
+    supporting: [],
   },
   {
     company: "Cummins",
@@ -139,12 +140,40 @@ const experience = [
     period: "Feb 2025 — Jan 2026",
     summary:
       "Worked across field-failure investigation, validation programs, engineering workflow automation, and an internal AI knowledge product.",
-    work: [
-      "Spearheaded a bolted-joint field-return investigation and developed a shaker-test plan from field-derived PSD profiles; the potential exposure scope covered 5,000+ units.",
-      "Migrated test analysis from Excel to MATLAB and automated validation and visualization, eliminating 20+ hours of manual work each week.",
-      "Ideated, prototyped, and released an internal GenAI RAG chatbot that reduced documentation retrieval time by 80%.",
+    work: [],
+    projects: [
+      {
+        id: "experience-cummins-rag",
+        title: "Internal GenAI knowledge tool",
+        kicker: "AI PRODUCT DELIVERY",
+        problem: "Engineering documentation was difficult to retrieve efficiently, creating friction when teams needed internal knowledge to move technical work forward.",
+        responsibility: "I identified the opportunity, shaped the product concept, built the prototype, and carried the RAG-based knowledge tool through release.",
+        approach: "I organized the experience around the retrieval workflow: connect engineering questions to relevant internal documentation, use generation to synthesize the retrieved context, and make the result useful inside an engineering team’s existing work.",
+        decision: "Treat retrieval quality and access to grounded internal context as the core product problem—not a generic chatbot experience.",
+        technical: "Retrieval-augmented generation, LLM integration, internal knowledge sources, and a release workflow designed around engineering-document discovery.",
+        outcome: "Reduced internal documentation-retrieval time by 80%.",
+        signal: "Demonstrates AI product ownership from problem framing through prototype and release.",
+      },
+      {
+        id: "experience-cummins-validation",
+        title: "Field-failure validation program",
+        kicker: "TECHNICAL PROGRAM OWNERSHIP",
+        problem: "Bolted-joint failures found in field returns created a design-validation and warranty-risk question with a potential exposure scope of more than 5,000 units.",
+        responsibility: "I spearheaded the investigation and developed the validation strategy needed to test proposed design fixes under representative vibration conditions.",
+        approach: "I translated field behavior into a shaker-test plan using field-derived power spectral density profiles, then connected the investigation to the evidence required for design and production-readiness decisions.",
+        decision: "Use field-derived vibration inputs to make the validation representative of the observed failure environment instead of relying on a generic test profile.",
+        technical: "Bolted-joint behavior, shaker testing, PSD-based vibration profiles, repeatability, and mechanical validation of design changes.",
+        outcome: "Created a validation path for a failure program with 5,000+ units in its potential risk scope.",
+        signal: "Demonstrates risk framing, validation planning, technical dependency management, and readiness support.",
+      },
     ],
-    evidence: "RESUME-REPORTED PROFESSIONAL RESULTS",
+    supporting: [
+      "Migrated legacy test analysis from Excel to MATLAB and automated validation and visualization, removing 20+ hours of manual work each week.",
+      "Supported engine-emissions validation by defining end-to-end test strategies and coordinating for accurate, repeatable production-readiness evidence.",
+      "Designed production-scale components in PTC Creo using GD&T, tolerance stack-ups, and DFM/DFA principles.",
+      "Used ANSYS Discovery to evaluate back-pressure tradeoffs and identify two concepts with 20% performance improvement.",
+      "Coordinated inventory and test-program needs across testing, quality, procurement, and fabrication teams.",
+    ],
   },
   {
     company: "Purdue–Bayer Innovation",
@@ -152,12 +181,22 @@ const experience = [
     period: "Aug 2023 — Dec 2023",
     summary:
       "Took an agritech workflow from user discovery and requirements through a computer-vision MVP.",
-    work: [
-      "Conducted 20+ user interviews, identified pain points, and translated the findings into requirements and MVP scope.",
-      "Built a PyTorch/OpenCV workflow for mapping farmland from satellite imagery.",
-      "The engagement reported 45% lower operating costs and 70% faster farmer onboarding.",
+    work: [],
+    projects: [
+      {
+        id: "experience-purdue-bayer",
+        title: "Agritech discovery and computer-vision MVP",
+        kicker: "DISCOVERY TO MVP",
+        problem: "A Nigerian agritech platform needed to reduce operational friction and make farmland mapping less manual as it scaled farmer onboarding.",
+        responsibility: "I helped lead discovery, translated user pain points into product requirements, scoped the MVP, and built the core computer-vision workflow.",
+        approach: "I conducted more than 20 interviews before defining scope, then used the findings to prioritize a satellite-imagery mapping workflow instead of beginning with a predetermined technical solution.",
+        decision: "Focus the MVP on automating farmland mapping because it addressed a concrete onboarding bottleneck and could be tested as a bounded workflow.",
+        technical: "PyTorch and OpenCV applied to satellite imagery for computer-vision-based farmland mapping.",
+        outcome: "The engagement achieved 45% lower operating costs and 70% faster farmer onboarding.",
+        signal: "Demonstrates customer discovery, requirement definition, MVP prioritization, and end-to-end delivery.",
+      },
     ],
-    evidence: "RESUME-REPORTED ENGAGEMENT RESULTS · MEASUREMENT DETAIL PENDING",
+    supporting: [],
   },
   {
     company: "Accenture",
@@ -165,12 +204,26 @@ const experience = [
     period: "Jul 2021 — Jul 2023",
     summary:
       "Built and maintained industrial data and ML workflows that turned high-frequency sensor data into operating decisions.",
-    work: [
-      "Deployed ETL pipelines with Python, SQL, BigQuery, AWS S3, and Redshift for industrial IoT analytics and predictive maintenance.",
-      "Built real-time analytics and early-failure workflows spanning 10,000+ sensors; the resume reports a 25% reduction in equipment downtime.",
-      "Automated recurring retrieval and reporting, reducing report-generation time by 15%.",
+    work: [],
+    projects: [
+      {
+        id: "experience-accenture-iot",
+        title: "Industrial IoT and predictive-maintenance platform",
+        kicker: "DATA PRODUCT AT SCALE",
+        problem: "Industrial teams needed dependable access to high-frequency equipment data and earlier indicators of component failure across a large sensor footprint.",
+        responsibility: "I built and maintained the ingestion, analytics, and machine-learning workflows that converted raw sensor signals into monitoring and predictive-maintenance outputs.",
+        approach: "I connected ETL, real-time analytics, early-failure modeling, and stakeholder-facing reporting so the work supported an operating decision rather than stopping at a model output.",
+        decision: "Build a governed data path around the detection workflow so analytics could operate across more than 10,000 sensors and remain usable for ongoing monitoring.",
+        technical: "Python, SQL, Pandas, scikit-learn, BigQuery, AWS S3, Redshift, ETL pipelines, and real-time industrial analytics.",
+        outcome: "Enabled earlier failure detection and reduced equipment downtime by 25% across a 10,000+ sensor analytics scope.",
+        signal: "Demonstrates data-platform execution, operational scale, reliability thinking, and decision-focused delivery.",
+      },
     ],
-    evidence: "RESUME-REPORTED PROFESSIONAL RESULTS",
+    supporting: [
+      "Automated recurring data retrieval and reporting with Python and SQL, reducing report-generation time by 15%.",
+      "Created Tableau dashboards and Gantt-based KPI tracking that improved SLA compliance by 12%.",
+      "Built SolidWorks digital-twin representations to support high-fidelity simulation of physical assets.",
+    ],
   },
 ];
 
@@ -343,8 +396,8 @@ export default function Home() {
             <h2 id="experience-title">Engineering depth, applied to product delivery.</h2>
           </div>
           <p>
-            Professional claims below follow the attached resumes. They are intentionally narrower
-            than the public builds because confidential artifacts and measurement details are not invented.
+            Selected programs show how I frame the operating problem, own the path forward,
+            work inside the technical details, and deliver a measurable result.
           </p>
         </div>
 
@@ -359,8 +412,28 @@ export default function Home() {
                 <h3>{item.company}</h3>
                 <b>{item.role}</b>
                 <p>{item.summary}</p>
-                <ul>{item.work.map((line) => <li key={line}>{line}</li>)}</ul>
-                <small>{item.evidence}</small>
+                {item.work.length > 0 && <ul>{item.work.map((line) => <li key={line}>{line}</li>)}</ul>}
+                {item.projects.map((project) => (
+                  <section className="experience-project" id={project.id} key={project.id} aria-labelledby={`${project.id}-title`}>
+                    <p className="experience-project-kicker">{project.kicker}</p>
+                    <h4 id={`${project.id}-title`}>{project.title}</h4>
+                    <div className="experience-project-grid">
+                      <div><span>THE OPERATING PROBLEM</span><p>{project.problem}</p></div>
+                      <div><span>MY RESPONSIBILITY</span><p>{project.responsibility}</p></div>
+                      <div><span>HOW I APPROACHED IT</span><p>{project.approach}</p></div>
+                      <div><span>THE PRODUCT / PROGRAM DECISION</span><p>{project.decision}</p></div>
+                      <div><span>TECHNICAL DEPTH</span><p>{project.technical}</p></div>
+                      <div className="experience-outcome"><span>OUTCOME</span><p>{project.outcome}</p></div>
+                    </div>
+                    <p className="experience-signal"><b>What this demonstrates</b>{project.signal}</p>
+                  </section>
+                ))}
+                {item.supporting.length > 0 && (
+                  <div className="supporting-work">
+                    <span>ADDITIONAL OWNERSHIP</span>
+                    <ul>{item.supporting.map((line) => <li key={line}>{line}</li>)}</ul>
+                  </div>
+                )}
               </div>
             </article>
           ))}
