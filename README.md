@@ -1,8 +1,8 @@
 # Gokul Gopalakrishnan — Portfolio
 
-Personal portfolio for Gokul Gopalakrishnan, featuring product and engineering
-case studies across AI evaluation, industrial vision, connected telemetry, and
-autonomous robotics.
+Personal portfolio for Gokul Gopalakrishnan, featuring PM/TPM case studies and
+product-operating artifacts across manufacturing traceability, industrial
+anomaly detection, continuous compliance, and semiconductor yield analytics.
 
 ## Prerequisites
 
@@ -27,6 +27,10 @@ The production build is a static export in `dist/client`.
 
 ## Project Structure
 
-- `app/` — portfolio page, metadata, and styles
+- `app/` — homepage, static project routes, metadata, and styles
+- `content/projects/` — typed case studies, PRDs, technical designs, program
+  plans, validation packs, and recording guides
+- `docs/demo-recording-handoff.md` — recording priority, capture standard, and
+  YouTube handoff format
 - `public/` — résumé and social-preview assets
-- `tests/` — checks for the exported static site
+- `tests/` — exported-route, asset, content-boundary, and forbidden-language checks
