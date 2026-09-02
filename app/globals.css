@@ -49,7 +49,7 @@ button, input { font: inherit; }
 .secondary-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; padding: 16px 19px; border: 1px solid var(--line-strong); color: #d7dfe8; font: 750 11px/1 var(--mono); letter-spacing: .05em; }
 .secondary-button:hover { border-color: var(--accent); color: var(--accent); }
 .text-link { padding-bottom: 6px; border-bottom: 1px solid var(--line-strong); color: #d7dfe8; font: 700 11px/1 var(--mono); }
-.proof-label { margin: 0 0 12px; color: var(--muted); font: 700 9px/1 var(--mono); letter-spacing: .12em; }
+.proof-label { margin: 0 0 12px; color: var(--accent); font: 700 9px/1 var(--mono); letter-spacing: .12em; }
 .proof-rail { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .proof-rail > a { min-height: 164px; padding: 22px; border-right: 1px solid var(--line); display: flex; flex-direction: column; transition: background .18s ease, transform .18s ease; }
 .proof-rail > a:hover, .proof-rail > a:focus-visible { background: rgba(243,167,18,.08); transform: translateY(-3px); outline: 1px solid var(--accent); outline-offset: -1px; }
