@@ -217,7 +217,7 @@ export default function Home() {
         </div>
         <div className="hero-grid">
           <div>
-            <p className="hero-kicker"><i aria-hidden="true" />TECHNICAL PRODUCT BUILDER</p>
+            <p className="hero-kicker"><i aria-hidden="true" />PRODUCT OWNERSHIP · ENGINEERING DEPTH</p>
             <h1>I solve technical problems and deliver products that work.</h1>
           </div>
           <div className="hero-copy">
@@ -226,16 +226,18 @@ export default function Home() {
               and release—using data and AI to help engineering teams make better decisions.
             </p>
             <div className="hero-actions">
-              <a className="primary-button" href="#projects">See the work <span>↓</span></a>
+              <a className="primary-button" href="#projects">Explore product work <span>↓</span></a>
+              <a className="secondary-button" href="#experience">See career impact <span>↓</span></a>
               <a className="text-link" href="mailto:gokulg846@gmail.com">Email me</a>
             </div>
           </div>
         </div>
-        <div className="proof-rail" aria-label="Selected professional outcomes">
-          <div><b>80%</b><span>faster documentation retrieval</span><small>CUMMINS · RESUME-REPORTED</small></div>
-          <div><b>20+ hrs</b><span>manual analysis removed each week</span><small>CUMMINS · RESUME-REPORTED</small></div>
-          <div><b>10,000+</b><span>sensors in industrial analytics scope</span><small>ACCENTURE · RESUME-REPORTED</small></div>
-          <div><b>20+</b><span>users interviewed before MVP scope</span><small>PURDUE–BAYER · RESUME-REPORTED</small></div>
+        <p className="proof-label">SELECTED CAREER IMPACT</p>
+        <div className="proof-rail" aria-label="Selected career impact">
+          <a href="#experience-cummins-rag"><b>80%</b><span>faster documentation retrieval</span><small>INTERNAL GENAI KNOWLEDGE TOOL · CUMMINS</small><em>Explore the work ↓</em></a>
+          <a href="#experience-cummins-validation"><b>5,000+</b><span>units in the program&apos;s risk scope</span><small>FIELD-FAILURE VALIDATION · CUMMINS</small><em>Explore the work ↓</em></a>
+          <a href="#experience-purdue-bayer"><b>20+</b><span>users interviewed before MVP scope</span><small>PRODUCT DISCOVERY · PURDUE–BAYER</small><em>Explore the work ↓</em></a>
+          <a href="#experience-accenture-iot"><b>25%</b><span>downtime reduction across a 10,000+ sensor scope</span><small>INDUSTRIAL DATA & ML · ACCENTURE</small><em>Explore the work ↓</em></a>
         </div>
       </header>
 
