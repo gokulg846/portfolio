@@ -38,6 +38,15 @@ const projectArtifacts = {
   ],
 };
 
+const workbenchArtifacts = {
+  "kafka-iot-program": [
+    "program-brief",
+    "integrated-delivery-plan",
+    "program-governance",
+    "status-recovery",
+  ],
+};
+
 async function exportedHtml(path = "index.html") {
   return readFile(new URL(path, outputRoot), "utf8");
 }
@@ -70,6 +79,11 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /The systems run\. The artifacts make the product judgment visible\./);
   assert.ok(html.indexOf('id="artifacts"') < html.indexOf('class="section-shell approach"'));
   assert.ok(html.indexOf('id="artifacts"') < html.indexOf('id="experience"'));
+  assert.match(html, /href="\/portfolio\/workbench\/"/);
+  assert.match(html, /Independent product studies and case exercises\./);
+  assert.ok(html.indexOf('id="experience"') < html.indexOf('id="workbench"'));
+  assert.doesNotMatch(html, /Planning and recovering a delayed Kafka\/AWS program/);
+  assert.doesNotMatch(html, /100,000|\$1\.44M|99\.99%|200,000/);
 
   for (const anchor of [
     "experience-cummins-rag",
@@ -89,6 +103,49 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.doesNotMatch(html, /90\/90|139\/139|11,310 die|5,012 source/);
   assert.doesNotMatch(html, /millisecond latency|single-command setup|fault tolerant|high-volume ingestion/i);
   assert.match(html, /\/portfolio\/_next\//);
+});
+
+test("exports the Product Workbench without mixing exercises into career evidence", async () => {
+  const indexHtml = await exportedHtml("workbench/index.html");
+  assert.match(indexHtml, /Product Workbench/);
+  assert.match(indexHtml, /Independent product studies and case exercises/);
+  assert.match(indexHtml, /Planning and recovering a delayed Kafka\/AWS program/);
+  assert.match(indexHtml, /href="\/portfolio\/workbench\/kafka-iot-program\/"/);
+
+  for (const [entry, artifacts] of Object.entries(workbenchArtifacts)) {
+    const entryHtml = await exportedHtml(`workbench/${entry}/index.html`);
+    assert.match(entryHtml, /Independent interview case exercise/);
+    assert.match(entryHtml, /scenario assumptions or targets/i);
+    assert.doesNotMatch(entryHtml, /professional or production results[.!]?<\/span>/i);
+
+    for (const [artifactIndex, artifact] of artifacts.entries()) {
+      const artifactHtml = await exportedHtml(`workbench/${entry}/${artifact}/index.html`);
+      const normalizedArtifactHtml = artifactHtml.replaceAll("<!-- -->", "");
+      assert.match(artifactHtml, /EVIDENCE BOUNDARY/);
+      assert.match(normalizedArtifactHtml, new RegExp(`Artifact ${artifactIndex + 1} of ${artifacts.length}`));
+      assert.match(artifactHtml, new RegExp(`href="/portfolio/workbench/${entry}/"`));
+      if (artifactIndex > 0) {
+        assert.match(artifactHtml, new RegExp(`href="/portfolio/workbench/${entry}/${artifacts[artifactIndex - 1]}/" rel="prev"`));
+      } else {
+        assert.doesNotMatch(artifactHtml, /rel="prev"/);
+      }
+      if (artifactIndex < artifacts.length - 1) {
+        assert.match(artifactHtml, new RegExp(`href="/portfolio/workbench/${entry}/${artifacts[artifactIndex + 1]}/" rel="next"`));
+      } else {
+        assert.doesNotMatch(artifactHtml, /rel="next"/);
+      }
+    }
+  }
+});
+
+test("keeps source interview PDFs out of the public export", async () => {
+  for (const filename of [
+    "IoT Data Processing with Apache Kafka Project Deck.pdf",
+    "IoT Data Processing with Apache Kafka Project Plan.pdf",
+    "IoT Data Processing with Apache Kafka Status Report.pdf",
+  ]) {
+    await assert.rejects(access(new URL(filename, outputRoot)));
+  }
 });
 
 test("exports all project overviews and every published operating artifact", async () => {
