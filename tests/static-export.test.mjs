@@ -5,6 +5,12 @@ import test from "node:test";
 const outputRoot = new URL("../dist/client/", import.meta.url);
 
 const projectArtifacts = {
+  "real-time-cargo-flight-tracker": [
+    "prd",
+    "technical-design",
+    "program-plan",
+    "validation",
+  ],
   "manufacturing-quality-traceability": [
     "prd",
     "technical-design",
@@ -49,6 +55,10 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /CAPABILITIES DELIVERED/);
   assert.equal((html.match(/class="product-card"/g) ?? []).length, 4);
   assert.equal((html.match(/class="product-disclosure"/g) ?? []).length, 4);
+  assert.equal((html.match(/class="additional-project"/g) ?? []).length, 1);
+  assert.match(html, /Real-Time Cargo Flight Tracker/);
+  assert.match(html, /Additional case study/);
+  assert.match(html, /Semiconductor Yield Analytics/);
   assert.match(html, /Show details \+/);
   assert.match(html, /View case study →/);
   assert.match(html, /Read PRD →/);
@@ -77,6 +87,7 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   );
   assert.doesNotMatch(html, /94\.8%|99\.2%|NCR-Bench|60\.1%|AMR edge/);
   assert.doesNotMatch(html, /90\/90|139\/139|11,310 die|5,012 source/);
+  assert.doesNotMatch(html, /millisecond latency|single-command setup|fault tolerant|high-volume ingestion/i);
   assert.match(html, /\/portfolio\/_next\//);
 });
 
@@ -152,7 +163,7 @@ test("exports representative PM, technical, delivery, and validation evidence", 
   }
 });
 
-test("exports decision-ready PRDs for all four projects", async () => {
+test("exports decision-ready PRDs for all projects", async () => {
   for (const project of Object.keys(projectArtifacts)) {
     const html = (await exportedHtml(`projects/${project}/prd/index.html`)).replaceAll("<!-- -->", "");
     for (const section of [
