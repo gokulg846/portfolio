@@ -43,3 +43,35 @@ export type ProjectCaseStudy = {
   artifacts: ProjectArtifact[];
   placement: "flagship" | "additional";
 };
+
+export type WorkbenchEvidenceState =
+  | "Observed fact"
+  | "Scenario assumption"
+  | "Interpretation"
+  | "Product hypothesis"
+  | "Proposed change"
+  | "Target"
+  | "Validated finding";
+
+export type WorkbenchArtifactSection = Omit<ArtifactSection, "state"> & {
+  state: WorkbenchEvidenceState;
+};
+
+export type WorkbenchArtifact = Omit<ProjectArtifact, "sections"> & {
+  sections: WorkbenchArtifactSection[];
+};
+
+export type WorkbenchEntry = {
+  slug: string;
+  title: string;
+  entryType: "Program case exercise" | "Product teardown" | "Improvement proposal" | "Product concept or PRD";
+  productOrScenario: string;
+  question: string;
+  summary: string;
+  disclosure: string;
+  evidenceStatus: "Published" | "In progress" | "Planned";
+  sourceBasis: string[];
+  tags: string[];
+  publicationDate: string;
+  artifacts: WorkbenchArtifact[];
+};
