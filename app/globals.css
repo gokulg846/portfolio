@@ -33,6 +33,14 @@ button, input { font: inherit; }
 .nav-links { display: flex; align-items: center; gap: 30px; color: #cbd5e1; font-size: 13px; }
 .nav-links a:hover { color: var(--accent); }
 .nav-cta { padding: 11px 15px; border: 1px solid var(--line-strong); font: 700 10px/1 var(--mono); letter-spacing: .07em; }
+.mobile-nav { display: none; position: relative; }
+.mobile-nav summary { padding: 11px 14px; border: 1px solid var(--line-strong); color: var(--accent); cursor: pointer; list-style: none; font: 750 10px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+.mobile-nav summary::-webkit-details-marker { display: none; }
+.mobile-nav summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.mobile-nav > div { position: absolute; top: calc(100% + 10px); right: 0; width: min(260px, calc(100vw - 44px)); padding: 8px; display: flex; flex-direction: column; border: 1px solid var(--line-strong); background: var(--ink-2); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.mobile-nav > div a { padding: 14px 12px; border-bottom: 1px solid var(--line); color: #d7dfe8; font: 700 11px/1 var(--mono); }
+.mobile-nav > div a:last-child { border-bottom: 0; color: var(--accent); }
+.mobile-nav > div a:hover, .mobile-nav > div a:focus-visible { background: var(--accent-soft); color: var(--accent); outline: 1px solid var(--accent); outline-offset: -1px; }
 
 .hero { min-height: calc(100vh - 72px); padding: 0 clamp(22px, 5vw, 76px); display: flex; flex-direction: column; justify-content: space-between; }
 .hero-meta { min-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); color: var(--muted); font: 10px/1.35 var(--mono); letter-spacing: .1em; }
@@ -363,7 +371,8 @@ footer h2 { max-width: 1200px; margin: 30px 0 74px; font-size: clamp(48px, 7vw, 
 
 @media (max-width: 720px) {
   .site-nav { height: 64px; }
-  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-links { display: none; }
+  .mobile-nav { display: block; }
   .hero { min-height: auto; }
   .hero-meta { align-items: flex-start; flex-direction: column; padding: 16px 0; }
   .hero-grid { padding: 64px 0; }
@@ -407,6 +416,14 @@ footer h2 { max-width: 1200px; margin: 30px 0 74px; font-size: clamp(48px, 7vw, 
   .experience-signal { flex-direction: column; gap: 8px; }
   .evidence-grid, .contact-links { grid-template-columns: 1fr; }
   .artifact-capabilities { grid-template-columns: 1fr; }
+  .artifact-matrix { min-width: 0; }
+  .artifact-matrix thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .artifact-matrix tbody, .artifact-matrix tr, .artifact-matrix th, .artifact-matrix td { display: block; width: 100%; }
+  .artifact-matrix tr { margin-bottom: 16px; border: 1px solid #b5c0cb; }
+  .artifact-matrix th, .artifact-matrix td { min-height: 54px; padding: 14px 16px; border: 0; border-bottom: 1px solid #b5c0cb; }
+  .artifact-matrix td:last-child { border-bottom: 0; }
+  .artifact-matrix th::before, .artifact-matrix td::before { content: attr(data-label); display: block; margin-bottom: 9px; color: #68778a; font: 750 8px/1 var(--mono); letter-spacing: .09em; }
+  .artifact-matrix tbody th { width: 100%; background: rgba(154,101,0,.06); }
   .evidence-grid > div { min-height: 215px; }
   .footer-meta { align-items: flex-start; flex-direction: column; }
   .case-main { padding-bottom: 72px; }
@@ -441,4 +458,10 @@ footer h2 { max-width: 1200px; margin: 30px 0 74px; font-size: clamp(48px, 7vw, 
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 16px; }
   .trajectory { align-items: flex-start; flex-direction: column; }
   .trajectory i { transform: rotate(90deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .proof-rail > a:hover, .proof-rail > a:focus-visible { transform: none; }
 }

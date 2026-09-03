@@ -1,6 +1,7 @@
 import type { WorkbenchEntry } from "../types";
+import { defineWorkbenchEntry } from "../define";
 
-export const kafkaIotProgram: WorkbenchEntry = {
+export const kafkaIotProgram: WorkbenchEntry = defineWorkbenchEntry({
   slug: "kafka-iot-program",
   title: "Planning and recovering a delayed Kafka/AWS program",
   entryType: "Program case exercise",
@@ -16,6 +17,7 @@ export const kafkaIotProgram: WorkbenchEntry = {
   ],
   tags: ["Technical program management", "Kafka", "AWS", "Dependencies", "RACI", "RAID", "Recovery planning"],
   publicationDate: "September 2026",
+  visibility: "public",
   artifacts: [
     {
       slug: "program-brief",
@@ -280,4 +282,4 @@ export const kafkaIotProgram: WorkbenchEntry = {
       ],
     },
   ],
-};
+});

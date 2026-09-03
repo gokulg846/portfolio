@@ -1,12 +1,14 @@
 import type { ProjectCaseStudy } from "../types";
+import { defineProject, isPublic } from "../define";
 import { complianceArtifacts } from "./continuous-compliance-gate";
 import { sensorArtifacts } from "./industrial-sensor-anomaly-detection";
 import { manufacturingArtifacts } from "./manufacturing-quality-traceability";
 import { waferArtifacts } from "./semiconductor-yield-analytics";
 import { flightTrackerArtifacts } from "./real-time-cargo-flight-tracker";
 
-export const projects: ProjectCaseStudy[] = [
-  {
+// Add, reorder, hide, or promote project records here. See update_instructions.md.
+const allProjects: ProjectCaseStudy[] = [
+  defineProject({
     slug: "real-time-cargo-flight-tracker",
     number: "01",
     category: "Cargo operations · event-driven product",
@@ -30,8 +32,9 @@ export const projects: ProjectCaseStudy[] = [
     ],
     artifacts: flightTrackerArtifacts,
     placement: "flagship",
-  },
-  {
+    visibility: "public",
+  }),
+  defineProject({
     slug: "manufacturing-quality-traceability",
     number: "04",
     category: "Manufacturing quality · data product",
@@ -54,8 +57,9 @@ export const projects: ProjectCaseStudy[] = [
     ],
     artifacts: manufacturingArtifacts,
     placement: "flagship",
-  },
-  {
+    visibility: "public",
+  }),
+  defineProject({
     slug: "industrial-sensor-anomaly-detection",
     number: "03",
     category: "Condition monitoring · applied ML",
@@ -78,8 +82,9 @@ export const projects: ProjectCaseStudy[] = [
     ],
     artifacts: sensorArtifacts,
     placement: "flagship",
-  },
-  {
+    visibility: "public",
+  }),
+  defineProject({
     slug: "continuous-compliance-gate",
     number: "02",
     category: "Platform governance · deterministic automation",
@@ -102,8 +107,9 @@ export const projects: ProjectCaseStudy[] = [
     ],
     artifacts: complianceArtifacts,
     placement: "flagship",
-  },
-  {
+    visibility: "public",
+  }),
+  defineProject({
     slug: "semiconductor-yield-analytics",
     number: "05",
     category: "Semiconductor yield · product analytics",
@@ -126,8 +132,13 @@ export const projects: ProjectCaseStudy[] = [
     ],
     artifacts: waferArtifacts,
     placement: "additional",
-  },
+    visibility: "public",
+  }),
 ];
+
+export const projects = allProjects
+  .filter(isPublic)
+  .sort((left, right) => left.number.localeCompare(right.number));
 
 export const projectBySlug = Object.fromEntries(projects.map((project) => [project.slug, project]));
 

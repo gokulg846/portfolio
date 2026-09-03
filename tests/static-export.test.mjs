@@ -68,6 +68,10 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /Real-Time Cargo Flight Tracker/);
   assert.match(html, /Additional case study/);
   assert.match(html, /Semiconductor Yield Analytics/);
+  assert.ok(html.indexOf("Real-Time Cargo Flight Tracker") < html.indexOf("Continuous Compliance Gate"));
+  assert.ok(html.indexOf("Continuous Compliance Gate") < html.indexOf("Industrial Sensor Anomaly Detection"));
+  assert.ok(html.indexOf("Industrial Sensor Anomaly Detection") < html.indexOf("Manufacturing Quality Traceability"));
+  assert.match(html, /<summary>Menu<\/summary>/);
   assert.match(html, /Show details \+/);
   assert.match(html, /View case study →/);
   assert.match(html, /Read PRD →/);
@@ -260,4 +264,14 @@ test("exports GitHub Pages assets and public files", async () => {
     access(new URL("favicon.svg", outputRoot)),
     access(new URL("og-v2.png", outputRoot)),
   ]);
+});
+
+test("documents the data-driven update workflow", async () => {
+  const instructions = await readFile(new URL("../update_instructions.md", import.meta.url), "utf8");
+  assert.match(instructions, /visibility: "public"/);
+  assert.match(instructions, /visibility: "private"/);
+  assert.match(instructions, /placement: "flagship"/);
+  assert.match(instructions, /defineProject/);
+  assert.match(instructions, /defineWorkbenchEntry/);
+  assert.match(instructions, /generic project and artifact routes are generated automatically/i);
 });

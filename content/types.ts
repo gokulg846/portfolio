@@ -1,4 +1,5 @@
 export type EvidenceState = "Current build" | "Design target" | "Proposed next step";
+export type ContentVisibility = "public" | "private";
 
 export type ArtifactTable = {
   headers: string[];
@@ -42,6 +43,40 @@ export type ProjectCaseStudy = {
   limitations: string[];
   artifacts: ProjectArtifact[];
   placement: "flagship" | "additional";
+  visibility: ContentVisibility;
+};
+
+export type ExperienceProject = {
+  id: string;
+  title: string;
+  kicker: string;
+  challenge: string;
+  ownership: string;
+  decision: string;
+  outcomeLabel: "RESULT" | "CAPABILITIES DELIVERED" | "DELIVERY SCOPE";
+  outcome: string;
+  technical: string[];
+  visibility: ContentVisibility;
+};
+
+export type ExperienceEntry = {
+  id: string;
+  company: string;
+  role: string;
+  period: string;
+  summary: string;
+  work: string[];
+  projects: ExperienceProject[];
+  supporting: string[];
+  visibility: ContentVisibility;
+};
+
+export type CareerHighlight = {
+  metric: string;
+  description: string;
+  label: string;
+  destination: string;
+  visibility: ContentVisibility;
 };
 
 export type WorkbenchEvidenceState =
@@ -74,4 +109,5 @@ export type WorkbenchEntry = {
   tags: string[];
   publicationDate: string;
   artifacts: WorkbenchArtifact[];
+  visibility: ContentVisibility;
 };

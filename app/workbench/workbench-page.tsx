@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { WorkbenchEntry } from "../../content/types";
+import { publicWorkbenchArtifacts } from "../../content/workbench/catalog";
 import { sitePath } from "../../lib/site-path";
 
 export function workbenchMetadata(entry: WorkbenchEntry): Metadata {
@@ -12,6 +13,7 @@ export function workbenchMetadata(entry: WorkbenchEntry): Metadata {
 }
 
 export function WorkbenchPage({ entry }: { entry: WorkbenchEntry }) {
+  const artifacts = publicWorkbenchArtifacts(entry);
   return (
     <main className="case-main workbench-entry-main">
       <header className="case-hero">
@@ -41,7 +43,7 @@ export function WorkbenchPage({ entry }: { entry: WorkbenchEntry }) {
       <section className="case-artifacts">
         <div><p className="case-section-label">WORKBENCH ARTIFACTS</p><h2>The reasoning behind the recommendation.</h2></div>
         <div className="artifact-list">
-          {entry.artifacts.map((artifact, index) => (
+          {artifacts.map((artifact, index) => (
             <a href={sitePath(`/workbench/${entry.slug}/${artifact.slug}/`)} key={artifact.slug}>
               <span>{String(index + 1).padStart(2, "0")} · {artifact.label}</span><h3>{artifact.title}</h3><p>{artifact.summary}</p><b>Read artifact →</b>
             </a>
