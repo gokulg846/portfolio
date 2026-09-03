@@ -3,11 +3,37 @@ import { complianceArtifacts } from "./continuous-compliance-gate";
 import { sensorArtifacts } from "./industrial-sensor-anomaly-detection";
 import { manufacturingArtifacts } from "./manufacturing-quality-traceability";
 import { waferArtifacts } from "./semiconductor-yield-analytics";
+import { flightTrackerArtifacts } from "./real-time-cargo-flight-tracker";
 
 export const projects: ProjectCaseStudy[] = [
   {
-    slug: "manufacturing-quality-traceability",
+    slug: "real-time-cargo-flight-tracker",
     number: "01",
+    category: "Cargo operations · event-driven product",
+    title: "Real-Time Cargo Flight Tracker",
+    cardTitle: "Follow selected cargo flights through a live event stream.",
+    summary: "A public event-streaming prototype that filters FedEx and UPS flight states, routes them through Redpanda and FastAPI, and renders current positions on a React map.",
+    audience: "Proposed user: a cargo operations coordinator maintaining awareness of active flights.",
+    pain: "The product hypothesis is that repeatedly refreshing disconnected flight views makes it harder to locate the right flight and judge whether the information is current. This workflow has not yet been validated with users.",
+    whatItDoes: "Polls OpenSky flight states, filters FDX and UPS callsigns, publishes records to Redpanda, forwards events over a FastAPI WebSocket, and renders flight markers in React and Leaflet.",
+    job: "Proposed job: locate and inspect a cargo flight in a current shared view.",
+    value: "A current shared view could reduce the effort required to monitor selected cargo flights; user value remains to be validated.",
+    stage: "Public prototype · frontend build reproduced at fc0ea6f · end-to-end validation pending",
+    decision: "Place a Kafka-compatible event broker between ingestion and presentation so source integration and browser delivery can evolve independently.",
+    stack: ["Python", "OpenSky API", "Redpanda", "Kafka protocol", "FastAPI", "AsyncIO", "WebSockets", "React", "TypeScript", "Leaflet", "Docker Compose"],
+    repository: "https://github.com/gokulg846/flight-tracker",
+    limitations: [
+      "Cargo operations coordinator is a proposed user, not a validated customer segment.",
+      "The producer runs separately from Docker Compose, and the end-to-end flow has not been independently reproduced for this review.",
+      "The current UI lacks search, freshness, stale-marker, reconnect, and multi-client broadcast behavior.",
+      "No latency, reliability, scale, adoption, or operational-outcome metric has been established.",
+    ],
+    artifacts: flightTrackerArtifacts,
+    placement: "flagship",
+  },
+  {
+    slug: "manufacturing-quality-traceability",
+    number: "04",
     category: "Manufacturing quality · data product",
     title: "Manufacturing Quality Traceability",
     cardTitle: "Trace a suspect part without hunting across four systems.",
@@ -27,10 +53,11 @@ export const projects: ProjectCaseStudy[] = [
       "Composite scores and thresholds have not been calibrated by a plant quality team.",
     ],
     artifacts: manufacturingArtifacts,
+    placement: "flagship",
   },
   {
     slug: "industrial-sensor-anomaly-detection",
-    number: "02",
+    number: "03",
     category: "Condition monitoring · applied ML",
     title: "Industrial Sensor Anomaly Detection",
     cardTitle: "Turn vibration data into a review queue reliability engineers can actually use.",
@@ -50,10 +77,11 @@ export const projects: ProjectCaseStudy[] = [
       "The current dashboard is a review aid; maintenance decisions remain human-owned.",
     ],
     artifacts: sensorArtifacts,
+    placement: "flagship",
   },
   {
     slug: "continuous-compliance-gate",
-    number: "03",
+    number: "02",
     category: "Platform governance · deterministic automation",
     title: "Continuous Compliance Gate",
     cardTitle: "Catch container-policy violations before they reach release.",
@@ -73,10 +101,11 @@ export const projects: ProjectCaseStudy[] = [
       "Exception ownership, signed policy distribution, CI rollout, and evidence retention are future product work.",
     ],
     artifacts: complianceArtifacts,
+    placement: "flagship",
   },
   {
     slug: "semiconductor-yield-analytics",
-    number: "04",
+    number: "05",
     category: "Semiconductor yield · product analytics",
     title: "Semiconductor Yield Analytics",
     cardTitle: "Give yield engineers the context behind a low-yield wafer.",
@@ -96,10 +125,14 @@ export const projects: ProjectCaseStudy[] = [
       "SPC limits and interpretations have not been validated by a production yield team.",
     ],
     artifacts: waferArtifacts,
+    placement: "additional",
   },
 ];
 
 export const projectBySlug = Object.fromEntries(projects.map((project) => [project.slug, project]));
+
+export const flagshipProjects = projects.filter((project) => project.placement === "flagship");
+export const additionalProjects = projects.filter((project) => project.placement === "additional");
 
 export const publicArtifacts = (project: ProjectCaseStudy) =>
   project.artifacts.filter((artifact) => artifact.visibility !== "private");

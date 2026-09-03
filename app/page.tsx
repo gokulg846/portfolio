@@ -1,4 +1,4 @@
-import { projects, publicArtifacts } from "../content/projects/catalog";
+import { additionalProjects, flagshipProjects, projects, publicArtifacts } from "../content/projects/catalog";
 import { sitePath } from "../lib/site-path";
 
 export const dynamic = "force-static";
@@ -159,7 +159,7 @@ export default function Home() {
       <section className="section-shell projects" id="projects" aria-labelledby="projects-title">
         <div className="section-head"><div><p className="eyebrow">Product case studies</p><h2 id="projects-title">Products built around real engineering work.</h2></div><p>Each project starts with a difficult engineering decision. The case study explains the pain point, the workflow I built, and the product and technical choices behind it.</p></div>
         <div className="product-list">
-          {projects.map((project) => {
+          {flagshipProjects.map((project) => {
             const prd = publicArtifacts(project).find((artifact) => artifact.slug === "prd");
             return <article className="product-card" key={project.slug}>
               <details className="product-disclosure">
@@ -184,6 +184,14 @@ export default function Home() {
             </article>;
           })}
         </div>
+        {additionalProjects.map((project) => {
+          const prd = publicArtifacts(project).find((artifact) => artifact.slug === "prd");
+          return <article className="additional-project" key={project.slug}>
+            <div className="additional-project-label"><span>{project.number}</span><p>Additional case study</p></div>
+            <div><p className="eyebrow">{project.category}</p><h3>{project.title}</h3><p>{project.summary}</p></div>
+            <div className="additional-project-links"><a href={sitePath(`/projects/${project.slug}/`)}>View case study →</a>{prd && <a href={sitePath(`/projects/${project.slug}/${prd.slug}/`)}>Read PRD →</a>}<a href={project.repository} target="_blank" rel="noreferrer">Source ↗</a></div>
+          </article>;
+        })}
       </section>
 
       <section className="section-shell evidence" id="artifacts" aria-labelledby="artifacts-title">

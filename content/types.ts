@@ -41,4 +41,5 @@ export type ProjectCaseStudy = {
   repository: string;
   limitations: string[];
   artifacts: ProjectArtifact[];
+  placement: "flagship" | "additional";
 };
