@@ -100,3 +100,6 @@ export const projects: ProjectCaseStudy[] = [
 ];
 
 export const projectBySlug = Object.fromEntries(projects.map((project) => [project.slug, project]));
+
+export const publicArtifacts = (project: ProjectCaseStudy) =>
+  project.artifacts.filter((artifact) => artifact.visibility !== "private");

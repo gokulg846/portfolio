@@ -1,4 +1,4 @@
-import { projects } from "../content/projects/catalog";
+import { projects, publicArtifacts } from "../content/projects/catalog";
 import { sitePath } from "../lib/site-path";
 
 export const dynamic = "force-static";
@@ -105,7 +105,7 @@ const artifactGroups = [
   { label: "DEFINE", title: "Product definition", slugs: ["prd"], description: "Primary user, job to be done, user journey, prioritized MVP, non-goals, and success metric tree." },
   { label: "DECIDE", title: "Technical judgment", slugs: ["technical-design", "model-card"], description: "Architecture, stack rationale, contracts, tradeoffs, and data or AI guardrails." },
   { label: "DELIVER", title: "Delivery leadership", slugs: ["program-plan"], description: "Milestones, dependencies, RACI, RAID, launch gates, ownership, and rollback." },
-  { label: "VALIDATE", title: "Validation and learning", slugs: ["validation", "evaluation", "recording-guide"], description: "Acceptance scenarios, evaluation protocol, pilot scorecard, failure analysis, and workflow demo." },
+  { label: "VALIDATE", title: "Validation and learning", slugs: ["validation", "evaluation"], description: "Acceptance scenarios, evaluation protocol, pilot scorecard, failure analysis, and launch gates." },
 ];
 
 export default function Home() {
@@ -135,7 +135,7 @@ export default function Home() {
         <div className="section-head"><div><p className="eyebrow">Product case studies</p><h2 id="projects-title">Products built around real engineering work.</h2></div><p>Each project starts with a difficult engineering decision. The case study explains the pain point, the workflow I built, and the product and technical choices behind it.</p></div>
         <div className="product-list">
           {projects.map((project) => {
-            const prd = project.artifacts.find((artifact) => artifact.slug === "prd");
+            const prd = publicArtifacts(project).find((artifact) => artifact.slug === "prd");
             return <article className="product-card" key={project.slug}>
               <details className="product-disclosure">
                 <summary>
@@ -165,7 +165,7 @@ export default function Home() {
         <div className="section-label"><span>02</span><p>Product operating artifacts</p></div>
         <div className="evidence-head"><h2 id="artifacts-title">The systems run. The artifacts make the product judgment visible.</h2><p>Each case study includes the work around the implementation: who it serves, why the scope was chosen, how delivery is managed, and what would justify a launch.</p></div>
         <div className="artifact-capabilities">{artifactGroups.map((group) => <div key={group.label}><span>{group.label}</span><h3>{group.title}</h3><p>{group.description}</p></div>)}</div>
-        <div className="artifact-matrix-wrap"><table className="artifact-matrix"><thead><tr><th>PROJECT</th>{artifactGroups.map((group) => <th key={group.label}>{group.label}</th>)}</tr></thead><tbody>{projects.map((project) => <tr key={project.slug}><th><a href={sitePath(`/projects/${project.slug}/`)}>{project.title}</a></th>{artifactGroups.map((group) => { const matches = project.artifacts.filter((artifact) => group.slugs.includes(artifact.slug)); return <td key={group.label}>{matches.map((artifact) => <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>{artifact.label.includes("DEMO") ? "Demo guide" : artifact.title}</a>)}</td>; })}</tr>)}</tbody></table></div>
+        <div className="artifact-matrix-wrap"><table className="artifact-matrix"><thead><tr><th>PROJECT</th>{artifactGroups.map((group) => <th key={group.label}>{group.label}</th>)}</tr></thead><tbody>{projects.map((project) => <tr key={project.slug}><th><a href={sitePath(`/projects/${project.slug}/`)}>{project.title}</a></th>{artifactGroups.map((group) => { const matches = publicArtifacts(project).filter((artifact) => group.slugs.includes(artifact.slug)); return <td key={group.label}>{matches.map((artifact) => <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>{artifact.title}</a>)}</td>; })}</tr>)}</tbody></table></div>
       </section>
 
       <section className="section-shell approach" aria-labelledby="approach-title">

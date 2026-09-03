@@ -10,7 +10,6 @@ const projectArtifacts = {
     "technical-design",
     "program-plan",
     "validation",
-    "recording-guide",
   ],
   "industrial-sensor-anomaly-detection": [
     "prd",
@@ -18,21 +17,18 @@ const projectArtifacts = {
     "evaluation",
     "model-card",
     "program-plan",
-    "recording-guide",
   ],
   "continuous-compliance-gate": [
     "prd",
     "technical-design",
     "program-plan",
     "validation",
-    "recording-guide",
   ],
   "semiconductor-yield-analytics": [
     "prd",
     "technical-design",
     "program-plan",
     "validation",
-    "recording-guide",
   ],
 };
 
@@ -55,6 +51,7 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /Show details \+/);
   assert.match(html, /View case study →/);
   assert.match(html, /Read PRD →/);
+  assert.doesNotMatch(html, /Demo guide|Recording Guide|recording-guide/i);
   assert.doesNotMatch(html, /Need a product owner/i);
   assert.match(html, /href="#experience-risingphoenix"/);
   assert.doesNotMatch(html, /users interviewed before MVP definition/i);
@@ -93,6 +90,7 @@ test("exports all project overviews and every published operating artifact", asy
     assert.doesNotMatch(projectHtml, /WHAT I OWNED/);
     assert.match(projectHtml, /KEY PRODUCT DECISION/);
     assert.match(projectHtml, /CURRENT LIMITS/);
+    assert.doesNotMatch(projectHtml, /Demo guide|Recording Guide|recording-guide/i);
 
     for (const [artifactIndex, artifact] of artifacts.entries()) {
       const artifactHtml = await exportedHtml(
@@ -117,6 +115,14 @@ test("exports all project overviews and every published operating artifact", asy
         /resume-reported|technical product builder|chatgpt|signin-with-chatgpt|openai/i,
       );
     }
+  }
+});
+
+test("keeps recording guides out of the public static export", async () => {
+  for (const project of Object.keys(projectArtifacts)) {
+    await assert.rejects(
+      access(new URL(`projects/${project}/recording-guide/index.html`, outputRoot)),
+    );
   }
 });
 

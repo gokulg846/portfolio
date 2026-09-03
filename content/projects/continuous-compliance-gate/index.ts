@@ -325,6 +325,8 @@ export const complianceArtifacts: ProjectArtifact[] = [
     slug: "recording-guide",
     label: "DEMO RUNBOOK",
     title: "Recording Guide",
+    // Private working material. Change to "public" only after a validated video URL exists.
+    visibility: "private",
     summary: "A deterministic 60–90 second CLI walkthrough of policy, controlled containers, violations, evidence, and expected enforcement status.",
     sections: [
       {

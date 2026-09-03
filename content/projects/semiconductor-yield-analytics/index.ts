@@ -317,6 +317,8 @@ export const waferArtifacts: ProjectArtifact[] = [
     slug: "recording-guide",
     label: "ALTERNATE DEMO RUNBOOK",
     title: "Recording Guide",
+    // Private working material. Change to "public" only after a validated video URL exists.
+    visibility: "private",
     summary: "A fallback recording plan that starts with a low-yield wafer, traces upstream context, and ends with an evidence-backed hypothesis rather than a causal claim.",
     sections: [
       {
