@@ -19,6 +19,7 @@ export type ProjectArtifact = {
   label: string;
   title: string;
   summary: string;
+  visibility?: "public" | "private";
   sections: ArtifactSection[];
 };
 

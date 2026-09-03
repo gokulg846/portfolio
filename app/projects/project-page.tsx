@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ProjectCaseStudy } from "../../content/types";
+import { publicArtifacts } from "../../content/projects/catalog";
 import { sitePath } from "../../lib/site-path";
 
 export function projectMetadata(project: ProjectCaseStudy): Metadata {
@@ -12,6 +13,8 @@ export function projectMetadata(project: ProjectCaseStudy): Metadata {
 }
 
 export function ProjectPage({ project }: { project: ProjectCaseStudy }) {
+  const artifacts = publicArtifacts(project);
+
   return (
     <main className="case-main">
       <header className="case-hero">
@@ -49,14 +52,14 @@ export function ProjectPage({ project }: { project: ProjectCaseStudy }) {
         </div>
       </section>
 
-      {project.artifacts.length > 0 && (
+      {artifacts.length > 0 && (
         <section className="case-artifacts">
           <div>
             <p className="case-section-label">PRODUCT OPERATING ARTIFACTS</p>
             <h2>The work around the build.</h2>
           </div>
           <div className="artifact-list">
-            {project.artifacts.map((artifact, index) => (
+            {artifacts.map((artifact, index) => (
               <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>
                 <span>{String(index + 1).padStart(2, "0")} · {artifact.label}</span><h3>{artifact.title}</h3><p>{artifact.summary}</p><b>Read artifact →</b>
               </a>

@@ -332,6 +332,8 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
     slug: "recording-guide",
     label: "DEMO RUNBOOK",
     title: "Recording Guide",
+    // Private working material. Change to "public" only after a validated video URL exists.
+    visibility: "private",
     summary: "A verified setup path and a concise recording narrative focused on the quality-engineer workflow—not implementation counts.",
     sections: [
       {

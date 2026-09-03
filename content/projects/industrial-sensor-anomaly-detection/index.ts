@@ -368,6 +368,8 @@ export const sensorArtifacts: ProjectArtifact[] = [
     slug: "recording-guide",
     label: "DEMO RUNBOOK",
     title: "Recording Guide",
+    // Private working material. Change to "public" only after a validated video URL exists.
+    visibility: "private",
     summary: "A product-focused recording path covering scarce labels, leakage control, review workflow, threshold tradeoffs, and evidence boundaries.",
     sections: [
       {

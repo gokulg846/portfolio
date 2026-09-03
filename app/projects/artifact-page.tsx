@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ProjectArtifact, ProjectCaseStudy } from "../../content/types";
+import { publicArtifacts } from "../../content/projects/catalog";
 import { sitePath } from "../../lib/site-path";
 
 export function artifactMetadata(project: ProjectCaseStudy, artifact: ProjectArtifact): Metadata {
@@ -12,9 +13,10 @@ export function artifactMetadata(project: ProjectCaseStudy, artifact: ProjectArt
 }
 
 export function ArtifactPage({ project, artifact }: { project: ProjectCaseStudy; artifact: ProjectArtifact }) {
-  const artifactIndex = project.artifacts.findIndex((item) => item.slug === artifact.slug);
-  const previousArtifact = artifactIndex > 0 ? project.artifacts[artifactIndex - 1] : undefined;
-  const nextArtifact = artifactIndex < project.artifacts.length - 1 ? project.artifacts[artifactIndex + 1] : undefined;
+  const artifacts = publicArtifacts(project);
+  const artifactIndex = artifacts.findIndex((item) => item.slug === artifact.slug);
+  const previousArtifact = artifactIndex > 0 ? artifacts[artifactIndex - 1] : undefined;
+  const nextArtifact = artifactIndex < artifacts.length - 1 ? artifacts[artifactIndex + 1] : undefined;
   const artifactPath = (slug: string) => sitePath(`/projects/${project.slug}/${slug}/`);
   const projectPath = sitePath(`/projects/${project.slug}/`);
 
@@ -62,7 +64,7 @@ export function ArtifactPage({ project, artifact }: { project: ProjectCaseStudy;
       </article>
 
       <nav className="artifact-navigation" aria-label="Artifact sequence">
-        <p className="artifact-position">Artifact {artifactIndex + 1} of {project.artifacts.length}</p>
+        <p className="artifact-position">Artifact {artifactIndex + 1} of {artifacts.length}</p>
         <div className="artifact-pager">
           <div>
             {previousArtifact && <a href={artifactPath(previousArtifact.slug)} rel="prev" aria-label={`Previous artifact: ${previousArtifact.title}`}><span>← PREVIOUS ARTIFACT</span><strong>{previousArtifact.title}</strong></a>}
