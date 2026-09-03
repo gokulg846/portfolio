@@ -9,13 +9,24 @@ const experience = [
     company: "RisingPhoenix.ai",
     role: "AI Product Engineer Intern",
     period: "Jul 2026 — present",
-    summary: "Building the ingestion and evaluation layer that turns unstructured security artifacts into structured inputs for architecture and compliance workflows.",
+    summary: "Led product delivery for an AI-driven architecture and compliance platform serving a large financial-services customer, translating business requirements, security standards, and reference architectures into workflows spanning document ingestion, architecture generation, gap analysis, and assurance reporting.",
     work: [
-      "Built document-classification, LLM-inference, and content-pattern extraction workflows for unstructured security artifacts.",
-      "Developed configurable evaluation harnesses and traceable decision flows so AI-assisted outputs could be tested and audited reproducibly.",
-      "Structured OWASP, CIS, and ISO control knowledge for reusable control mapping.",
+      "Converted CIS, OWASP, NIST, and NYDFS requirements into reusable validation components spanning architecture design, compliance review, and software delivery.",
+      "Defined release-assurance workflows integrating SonarQube, Jenkins, Trivy, JFrog, SBOM generation, and security-control validation.",
     ],
-    projects: [],
+    projects: [
+      {
+        id: "experience-risingphoenix-platform",
+        title: "AI architecture and compliance platform",
+        kicker: "ENTERPRISE AI PRODUCT DELIVERY",
+        challenge: "A large financial-services customer needed business requirements, reference architectures, and security standards turned into a consistent, traceable workflow across AI-generated architecture and compliance outputs.",
+        ownership: "I owned cross-functional delivery across AI, backend, frontend, DevOps, security, and architecture teams, translating customer needs into user journeys, functional and technical specifications, implementation plans, test criteria, and deployment-ready capabilities.",
+        decision: "Structure the product as versioned, gated workflow stages with persistent state and recovery handling, then combine domain-specific AI strategies and gold-standard examples with deterministic controls and human review.",
+        outcomeLabel: "CAPABILITIES DELIVERED",
+        outcome: "Document ingestion, architecture generation, gap analysis, assurance reporting, reusable policy controls, AI-assisted quality assurance, and governed software-supply-chain assurance.",
+        technical: ["Multi-stage AI workflows", "Database-backed state and recovery", "Human-in-the-loop QA", "Deterministic validation", "CIS / OWASP / NIST / NYDFS", "CI/CD security and SBOM"],
+      },
+    ],
     supporting: [],
   },
   {
@@ -33,6 +44,7 @@ const experience = [
         challenge: "Engineers were spending too long locating information across internal documentation.",
         ownership: "I identified the opportunity, shaped the product concept, built the prototype, and carried the RAG-based knowledge tool through release.",
         decision: "Use retrieval-augmented generation to ground responses in internal documentation rather than ship a general-purpose chatbot.",
+        outcomeLabel: "RESULT",
         outcome: "Reduced internal documentation-retrieval time by 80%.",
         technical: ["RAG architecture", "Document retrieval", "Context grounding", "LLM response generation"],
       },
@@ -43,6 +55,7 @@ const experience = [
         challenge: "Bolted-joint failures in field returns created a validation and warranty-risk question with potential exposure across more than 5,000 units.",
         ownership: "I spearheaded the investigation and developed a shaker-test plan using field-derived power spectral density profiles.",
         decision: "Base the validation input on observed field vibration rather than a generic test profile, so the test represented the actual failure environment.",
+        outcomeLabel: "RESULT",
         outcome: "Established the validation path for a failure program involving potential exposure across 5,000+ units.",
         technical: ["Field-return analysis", "Bolted joints", "Shaker testing", "PSD vibration profiles", "Validation planning"],
       },
@@ -68,6 +81,7 @@ const experience = [
         challenge: "The agritech platform needed a more scalable way to map farmland from satellite imagery.",
         ownership: "I conducted 20+ user interviews, translated the findings into product requirements and MVP scope, and built the computer-vision workflow.",
         decision: "Prioritize farmland mapping as a bounded MVP tied directly to the workflow problems identified during discovery.",
+        outcomeLabel: "RESULT",
         outcome: "Reduced operating costs by 45%.",
         technical: ["PyTorch", "OpenCV", "Satellite imagery", "Computer vision"],
       },
@@ -83,19 +97,30 @@ const experience = [
     work: [],
     projects: [
       {
+        id: "experience-accenture-delivery",
+        title: "Delivery operations and SLA visibility",
+        kicker: "PROGRAM OPERATIONS",
+        challenge: "Delivery teams needed a clearer operating view of milestones, dependencies, and service-level performance.",
+        ownership: "I built Tableau and Gantt-based KPI tracking that connected delivery progress with the service-level commitments teams were managing.",
+        decision: "Bring schedule and SLA signals into one review workflow so delivery conversations could focus on exceptions, ownership, and recovery actions.",
+        outcomeLabel: "RESULT",
+        outcome: "Improved SLA compliance by 12%.",
+        technical: ["Tableau", "KPI design", "Gantt planning", "SLA tracking", "Delivery reporting"],
+      },
+      {
         id: "experience-accenture-iot",
         title: "Industrial IoT and predictive-maintenance platform",
         kicker: "DATA PRODUCT AT SCALE",
         challenge: "Industrial teams needed earlier failure signals across a large footprint of high-frequency equipment sensors.",
         ownership: "I built ETL, real-time analytics, machine-learning, and reporting workflows that converted sensor data into monitoring and predictive-maintenance outputs.",
         decision: "Connect ingestion, analytics, and early-failure detection in one operating workflow rather than treat the model as a standalone deliverable.",
+        outcomeLabel: "RESULT",
         outcome: "Supported analytics across 10,000+ sensors and reduced equipment downtime by 25%.",
         technical: ["Python", "SQL", "Pandas", "scikit-learn", "BigQuery", "AWS S3", "Redshift"],
       },
     ],
     supporting: [
       "Automated recurring retrieval and reporting, reducing generation time by 15%.",
-      "Built Tableau and Gantt-based KPI tracking that improved SLA compliance by 12%.",
       "Created SolidWorks digital-twin representations for physical-asset simulation.",
     ],
   },
@@ -124,10 +149,10 @@ export default function Home() {
         </div>
         <p className="proof-label">SELECTED CAREER IMPACT</p>
         <div className="proof-rail" aria-label="Selected career impact">
+          <a href="#experience-risingphoenix-platform"><b>6 functions</b><span>aligned from customer requirements through deployment-ready capabilities</span><small>ENTERPRISE AI PRODUCT DELIVERY · RISINGPHOENIX.AI</small><em aria-hidden="true">↓</em></a>
           <a href="#experience-cummins-rag"><b>80%</b><span>faster documentation retrieval</span><small>INTERNAL GENAI KNOWLEDGE TOOL · CUMMINS</small><em aria-hidden="true">↓</em></a>
-          <a href="#experience-cummins-validation"><b>5,000+</b><span>units in the potential warranty-risk scope</span><small>FIELD-DERIVED VALIDATION · CUMMINS</small><em aria-hidden="true">↓</em></a>
-          <a href="#experience-risingphoenix"><b>AI-native</b><span>document ingestion and traceable decision workflows for security and compliance analysis</span><small>EARLY-STAGE GRC PLATFORM · RISINGPHOENIX.AI</small><em aria-hidden="true">↓</em></a>
-          <a href="#experience-accenture-iot"><b>25%</b><span>downtime reduction across a 10,000+ sensor scope</span><small>INDUSTRIAL DATA & ML · ACCENTURE</small><em aria-hidden="true">↓</em></a>
+          <a href="#experience-accenture-delivery"><b>12%</b><span>improvement in SLA compliance</span><small>DELIVERY OPERATIONS · ACCENTURE</small><em aria-hidden="true">↓</em></a>
+          <a href="#experience-accenture-iot"><b>25%</b><span>reduction in equipment downtime</span><small>INDUSTRIAL DATA & ML · ACCENTURE</small><em aria-hidden="true">↓</em></a>
         </div>
       </header>
 
@@ -176,7 +201,7 @@ export default function Home() {
       <section className="section-shell experience" id="experience" aria-labelledby="experience-title">
         <div className="section-label"><span>04</span><p>Career impact</p></div>
         <div className="experience-head"><div><p className="eyebrow">BREADTH WITH A DIRECTION</p><h2 id="experience-title">Engineering depth, applied to product delivery.</h2></div><p>Selected programs show the operating problem, my ownership, the decision I made, and the result—followed by the technical depth behind the work.</p></div>
-        <div className="experience-list">{experience.map((item, index) => <article className="experience-card" id={item.id} key={item.company}><div className="experience-meta"><span>{String(index + 1).padStart(2, "0")}</span><time>{item.period}</time></div><div className="experience-copy"><h3>{item.company}</h3><b>{item.role}</b><p>{item.summary}</p>{item.work.length > 0 && <ul>{item.work.map((line) => <li key={line}>{line}</li>)}</ul>}{item.projects.map((project) => <section className="experience-project" id={project.id} key={project.id} aria-labelledby={`${project.id}-title`}><p className="experience-project-kicker">{project.kicker}</p><h4 id={`${project.id}-title`}>{project.title}</h4><div className="experience-project-grid"><div><span>CHALLENGE</span><p>{project.challenge}</p></div><div><span>MY OWNERSHIP</span><p>{project.ownership}</p></div><div><span>KEY DECISION</span><p>{project.decision}</p></div><div className="experience-outcome"><span>RESULT</span><p>{project.outcome}</p></div></div><div className="experience-tech"><span>TECHNICAL DEPTH</span>{project.technical.map((technicalItem) => <b key={technicalItem}>{technicalItem}</b>)}</div></section>)}{item.supporting.length > 0 && <div className="supporting-work"><span>ADDITIONAL OWNERSHIP</span><ul>{item.supporting.map((line) => <li key={line}>{line}</li>)}</ul></div>}</div></article>)}</div>
+        <div className="experience-list">{experience.map((item, index) => <article className="experience-card" id={item.id} key={item.company}><div className="experience-meta"><span>{String(index + 1).padStart(2, "0")}</span><time>{item.period}</time></div><div className="experience-copy"><h3>{item.company}</h3><b>{item.role}</b><p>{item.summary}</p>{item.work.length > 0 && <ul>{item.work.map((line) => <li key={line}>{line}</li>)}</ul>}{item.projects.map((project) => <section className="experience-project" id={project.id} key={project.id} aria-labelledby={`${project.id}-title`}><p className="experience-project-kicker">{project.kicker}</p><h4 id={`${project.id}-title`}>{project.title}</h4><div className="experience-project-grid"><div><span>CHALLENGE</span><p>{project.challenge}</p></div><div><span>MY OWNERSHIP</span><p>{project.ownership}</p></div><div><span>KEY DECISION</span><p>{project.decision}</p></div><div className="experience-outcome"><span>{project.outcomeLabel}</span><p>{project.outcome}</p></div></div><div className="experience-tech"><span>TECHNICAL DEPTH</span>{project.technical.map((technicalItem) => <b key={technicalItem}>{technicalItem}</b>)}</div></section>)}{item.supporting.length > 0 && <div className="supporting-work"><span>ADDITIONAL OWNERSHIP</span><ul>{item.supporting.map((line) => <li key={line}>{line}</li>)}</ul></div>}</div></article>)}</div>
       </section>
 
       <footer><span>LET’S BUILD SOMETHING USEFUL.</span><h2>Need a technical product manager who can work inside the engineering details?</h2><div className="contact-links"><a href="mailto:gokulg846@gmail.com">Email <span>↗</span></a><a href="https://www.linkedin.com/in/gokulgopal" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/gokulg846" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href={sitePath("/Gokul_Gopalakrishnan_Resume.pdf")}>Data & AI résumé <span>↓</span></a><a href={sitePath("/Gokul_Gopalakrishnan_Technical_Program_Resume.pdf")}>Program résumé <span>↓</span></a></div><div className="footer-meta"><span>GOKUL GOPALAKRISHNAN</span><span>DATA · AI · ENGINEERING · PRODUCT EXECUTION</span></div></footer>

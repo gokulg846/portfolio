@@ -44,8 +44,9 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /I solve technical problems and deliver products that work/);
   assert.match(html, /Products built around real engineering work\./);
   assert.match(html, /Product case studies/);
-  assert.match(html, /AI-native/);
-  assert.match(html, /document ingestion and traceable decision workflows/);
+  assert.doesNotMatch(html, /AI-native/);
+  assert.match(html, /AI architecture and compliance platform/);
+  assert.match(html, /CAPABILITIES DELIVERED/);
   assert.equal((html.match(/class="product-card"/g) ?? []).length, 4);
   assert.equal((html.match(/class="product-disclosure"/g) ?? []).length, 4);
   assert.match(html, /Show details \+/);
@@ -53,7 +54,7 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /Read PRD →/);
   assert.doesNotMatch(html, /Demo guide|Recording Guide|recording-guide/i);
   assert.doesNotMatch(html, /Need a product owner/i);
-  assert.match(html, /href="#experience-risingphoenix"/);
+  assert.match(html, /href="#experience-risingphoenix-platform"/);
   assert.doesNotMatch(html, /users interviewed before MVP definition/i);
   assert.doesNotMatch(html, /WHAT I OWNED|NEXT VALIDATION/);
   assert.match(html, /The systems run\. The artifacts make the product judgment visible\./);
@@ -62,8 +63,8 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
 
   for (const anchor of [
     "experience-cummins-rag",
-    "experience-cummins-validation",
-    "experience-risingphoenix",
+    "experience-risingphoenix-platform",
+    "experience-accenture-delivery",
     "experience-accenture-iot",
   ]) {
     assert.match(html, new RegExp(`href="#${anchor}"`));
