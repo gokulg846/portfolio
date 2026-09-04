@@ -1,5 +1,6 @@
 import { sitePath } from "../lib/site-path";
 import { workbenchEntries } from "../content/workbench/catalog";
+import { resumeUrl } from "../content/site";
 
 export function SiteNav({ label = "Primary navigation" }: { label?: string }) {
   return (
@@ -10,7 +11,7 @@ export function SiteNav({ label = "Primary navigation" }: { label?: string }) {
         <a href={sitePath("/#artifacts")}>Artifacts</a>
         <a href={sitePath("/#experience")}>Experience</a>
         {workbenchEntries.length > 0 && <a href={sitePath("/workbench/")}>Workbench</a>}
-        <a className="nav-cta" href={sitePath("/Gokul_Gopalakrishnan_Resume.pdf")}>Résumé</a>
+        <a className="nav-cta" href={resumeUrl} target="_blank" rel="noreferrer">Résumé</a>
       </div>
       <details className="mobile-nav">
         <summary>Menu</summary>
@@ -19,7 +20,7 @@ export function SiteNav({ label = "Primary navigation" }: { label?: string }) {
           <a href={sitePath("/#artifacts")}>Artifacts</a>
           <a href={sitePath("/#experience")}>Experience</a>
           {workbenchEntries.length > 0 && <a href={sitePath("/workbench/")}>Workbench</a>}
-          <a href={sitePath("/Gokul_Gopalakrishnan_Resume.pdf")}>Résumé</a>
+          <a href={resumeUrl} target="_blank" rel="noreferrer">Résumé</a>
         </div>
       </details>
     </nav>

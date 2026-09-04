@@ -2,6 +2,10 @@
 
 The portfolio is content-driven. Projects, experience, highlights, Workbench entries, and artifacts can be shown or hidden from their content records. Generic routes generate the pages automatically, so adding an item does not require creating files under `app/projects/` or `app/workbench/`.
 
+## Change the résumé link
+
+Update `resumeUrl` in `content/site.ts`. The desktop navigation, mobile navigation, and footer all use this single value.
+
 ## Quick visibility controls
 
 Use these values wherever a record has a `visibility` field:
