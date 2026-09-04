@@ -266,6 +266,17 @@ test("exports GitHub Pages assets and public files", async () => {
   ]);
 });
 
+test("all visible résumé links use the current Google Drive document", async () => {
+  const html = await exportedHtml();
+  const resumeUrl =
+    "https://drive.google.com/file/d/1Y5wKez5a-orzJgvev2w6zbhi1HBm89b7/view?usp=sharing";
+  const resumeLinks = [...html.matchAll(/<a[^>]+href="([^"]+)"[^>]*>[^<]*Résumé/gi)];
+
+  assert.ok(resumeLinks.length >= 2, "expected desktop, mobile, and footer résumé links");
+  assert.ok(resumeLinks.every((match) => match[1] === resumeUrl));
+  assert.doesNotMatch(html, /href="[^"]*Gokul_Gopalakrishnan[^"?]*\.pdf/i);
+});
+
 test("documents the data-driven update workflow", async () => {
   const instructions = await readFile(new URL("../update_instructions.md", import.meta.url), "utf8");
   assert.match(instructions, /visibility: "public"/);
