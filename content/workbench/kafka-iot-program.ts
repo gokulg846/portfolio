@@ -3,12 +3,12 @@ import { defineWorkbenchEntry } from "../define";
 
 export const kafkaIotProgram: WorkbenchEntry = defineWorkbenchEntry({
   slug: "kafka-iot-program",
-  title: "Planning and recovering a delayed Kafka/AWS program",
+  title: "Recovering a delayed Kafka and AWS program",
   entryType: "Program case exercise",
   productOrScenario: "Hypothetical industrial IoT event-streaming program",
-  question: "How should a TPM scope, govern, communicate, and recover a multi-team event-streaming program when a critical workstream falls behind?",
-  summary: "A hypothetical TPM interview exercise showing how I structured a multi-team event-streaming program, mapped dependencies and accountability, reported a delayed workstream, and proposed a recovery plan.",
-  disclosure: "Independent interview case exercise based on a hypothetical manufacturing scenario. Team size, budget, sensor volume, reliability, latency, and accuracy figures are scenario assumptions or targets—not professional or production results.",
+  question: "How should a TPM recover a delayed cloud workstream while protecting the critical path of a multi-team event-streaming program?",
+  summary: "A TPM interview exercise covering a six-month Kafka and AWS program, including dependencies, ownership, status reporting, and recovery from a delayed cloud workstream.",
+  disclosure: "This independent interview exercise uses a hypothetical manufacturing scenario. Team size, budget, sensor volume, reliability, latency, and accuracy are scenario inputs or targets. They represent planning assumptions.",
   evidenceStatus: "Published",
   sourceBasis: [
     "IoT Data Processing with Apache Kafka Project Deck",
@@ -23,29 +23,29 @@ export const kafkaIotProgram: WorkbenchEntry = defineWorkbenchEntry({
       slug: "program-brief",
       label: "FRAME THE PROGRAM",
       title: "Program Brief",
-      summary: "Defines the hypothetical business need, proposed system boundary, stakeholder model, delivery scope, non-goals, and measurable target conditions.",
+      summary: "Frames the business need, system scope, stakeholders, delivery assumptions, and measurable targets for the exercise.",
       sections: [
         {
-          title: "Source and evidence boundary",
+          title: "Source material and scope",
           state: "Observed fact",
-          body: ["This artifact is an interpretation of three interview-case documents created for a hypothetical program. It demonstrates planning judgment; it is not evidence that the program, team, budget, or platform existed in production."],
+          body: ["This exercise interprets three interview-case documents for a hypothetical program. It demonstrates how I would structure and recover the work."],
           table: { headers: ["Source", "Contribution"], rows: [
             ["Project deck", "Business scenario, proposed architecture, team model, and target outcomes"],
-            ["Project plan", "Scope, milestones, dependencies, RACI, modeled resourcing, risks, and communications"],
+            ["Project plan", "Scope, milestones, dependencies, RACI, and modeled resourcing"],
             ["Status report", "Simulated delivery checkpoint, delayed cloud workstream, and proposed recovery"],
           ] },
         },
         {
           title: "Program decision",
           state: "Interpretation",
-          body: ["The program is not simply a Kafka implementation. Its core decision is whether a cross-functional team can create a governed path from device messages to timely operational visibility while sequencing cloud, security, testing, and handoff work around shared dependencies."],
+          body: ["The central program decision is how to create a governed path from device messages to timely operational visibility while sequencing cloud, security, testing, and handoff dependencies."],
         },
         {
           title: "Scenario assumptions",
           state: "Scenario assumption",
           table: { headers: ["Assumption", "How it shapes the plan"], rows: [
             ["Fortune 500 food manufacturer with 30+ facilities", "Requires common interfaces and cross-site rollout thinking"],
-            ["More than 100,000 installed IoT sensors", "Makes ingestion reliability, throughput, and device onboarding central design concerns"],
+            ["More than 100,000 installed IoT sensors", "Makes ingestion capacity, interface consistency, and cross-site rollout central design concerns"],
             ["15 modeled FTE and $1.44M modeled budget", "Creates explicit capacity, cost, and accountability constraints"],
             ["Six-month delivery window across twelve sprints", "Requires dependency-first sequencing and staged acceptance"],
           ] },
@@ -54,7 +54,7 @@ export const kafkaIotProgram: WorkbenchEntry = defineWorkbenchEntry({
           title: "Proposed reference architecture",
           state: "Scenario assumption",
           code: "IoT sensors -> MQTT / HiveMQ -> Kafka Connect -> Kafka Streams\n                                             -> AWS DynamoDB\n                                             -> Grafana dashboards",
-          body: ["This is the architecture proposed by the exercise, not a deployed system. The program plan treats data ingestion, real-time processing, cloud storage, visualization, security, testing, and documentation as linked workstreams."],
+          body: ["The exercise proposes this reference architecture. The delivery plan treats ingestion, stream processing, cloud storage, visualization, security, testing, and documentation as linked workstreams."],
         },
         {
           title: "Goals and target conditions",
@@ -100,7 +100,7 @@ export const kafkaIotProgram: WorkbenchEntry = defineWorkbenchEntry({
         {
           title: "Planning basis",
           state: "Scenario assumption",
-          body: ["The source plan models six months and twelve two-week sprints. Because dates and milestone groupings differ between the plan and status report, this interpretation preserves the dependency logic rather than presenting every source date as internally consistent."],
+          body: ["The source plan covers six months and twelve two-week sprints. Its milestone dates and groupings vary across documents, so this version preserves the dependency logic and calls out the inconsistencies."],
         },
         {
           title: "Dependency-led sequence",
@@ -158,7 +158,7 @@ export const kafkaIotProgram: WorkbenchEntry = defineWorkbenchEntry({
         {
           title: "Operating model",
           state: "Interpretation",
-          body: ["The exercise names development, test, cloud, IoT, data, security, documentation, customer, and stakeholder roles. The TPM operating model below converts that list into decisions, evidence, and escalation paths rather than meeting volume."],
+          body: ["The source names development, test, cloud, IoT, data, security, documentation, customer, and stakeholder roles. This operating model assigns each group clear decisions, evidence, and escalation paths."],
         },
         {
           title: "RACI",
@@ -255,7 +255,7 @@ export const kafkaIotProgram: WorkbenchEntry = defineWorkbenchEntry({
         {
           title: "Executive status",
           state: "Interpretation",
-          body: ["Status: red on cloud persistence and integration; yellow on downstream visualization, security, and test readiness. The recovery plan adds AWS architecture support and protects a thin end-to-end slice first. The June 20 target is retained as a goal, but confidence is conditional on the cloud checkpoint and should not be reported as no-risk."],
+          body: ["Status is red for cloud persistence and integration, and yellow for visualization, security, and test readiness. The recovery plan adds AWS architecture support and prioritizes a thin end-to-end slice. The June 20 target remains conditional on the cloud checkpoint."],
         },
         {
           title: "Plan-quality critique",

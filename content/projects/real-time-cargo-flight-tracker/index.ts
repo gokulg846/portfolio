@@ -5,12 +5,12 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
     slug: "prd",
     label: "PRODUCT DEFINITION",
     title: "Product Requirements Document",
-    summary: "A retrospective PRD that separates the implemented event-streaming prototype from the cargo-operations workflow and outcomes that still require validation.",
+    summary: "A product brief for the event-streaming prototype, including the proposed user, requirements, metrics, risks, and validation plan.",
     sections: [
       {
-        title: "Artifact status and provenance",
+        title: "Context and source",
         state: "Current build",
-        body: ["Retrospective portfolio PRD created from the public repository at commit fc0ea6ff4c267796fb2271a63443b3f53500ff76. It was not created during a customer engagement."],
+        body: ["I created this portfolio PRD from the public repository at commit fc0ea6f after completing the initial prototype."],
         table: { headers: ["Field", "Value"], rows: [
           ["Version", "1.0"],
           ["Updated", "September 3, 2026"],
@@ -21,20 +21,20 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
       {
         title: "Product brief",
         state: "Design target",
-        body: ["Give a cargo operations coordinator one current view of selected cargo flights, while making freshness and connection state explicit enough that the view is not mistaken for a source of operational truth."],
+        body: ["Give a cargo operations coordinator one current view of selected cargo flights with clear freshness and connection status. The interface supports monitoring while operational systems retain authority."],
         table: { headers: ["PRD field", "Decision"], rows: [
           ["Status", "Public engineering prototype; frontend build reproduced; end-to-end and user validation pending"],
           ["Product owner", "Gokul Gopalakrishnan · independent end-to-end build"],
           ["Primary-user hypothesis", "Cargo operations coordinator monitoring active FedEx and UPS flights"],
           ["Target job", "Locate and inspect a cargo flight in a current shared view"],
-          ["Hypothesized current workflow", "Refresh public flight sources or move among disconnected views without a clear freshness indicator"],
-          ["Current boundary", "Event ingestion and map visualization prototype, not an operational dispatch or flight-safety system"],
+          ["Hypothesized current workflow", "Refresh public flight sources or move among disconnected views with limited freshness information"],
+          ["Current boundary", "Event ingestion and map visualization prototype for monitoring research"],
         ] },
       },
       {
-        title: "Problem evidence and assumptions",
+        title: "Problem and open assumptions",
         state: "Design target",
-        body: ["The repository proves that selected flight states can move through an event broker into a live browser map. It does not prove that cargo coordinators have this problem, that the current fields support their decisions, or that the workflow changes an operational outcome."],
+        body: ["The repository implements the components of the flight-state path. An end-to-end run remains pending, along with user and operational validation."],
         table: { headers: ["Statement", "Evidence state", "Product implication"], rows: [
           ["OpenSky flight states can be filtered by FDX and UPS callsigns", "Implemented in producer.py", "A bounded cargo-flight stream exists"],
           ["A broker decouples ingestion from browser delivery", "Implemented architecture", "Source and presentation components can evolve independently"],
@@ -43,12 +43,12 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         ] },
       },
       {
-        title: "Outcome and product strategy",
+        title: "Outcome to validate",
         state: "Design target",
         table: { headers: ["Layer", "Desired change", "Proof required"], rows: [
           ["User outcome", "Find and inspect the flight relevant to the current task", "Task success and completion time in moderated sessions"],
           ["Trust outcome", "Know when the view is current, stale, disconnected, or using mock data", "Users correctly interpret state in failure scenarios"],
-          ["System outcome", "Deliver consistent updates without silent loss or duplication", "Instrumented reliability run"],
+          ["System outcome", "Deliver consistent updates with visible loss and duplication checks", "Instrumented reliability run"],
           ["Business hypothesis", "Reduce effort required to maintain cargo-flight awareness", "Baseline comparison in a bounded pilot"],
         ] },
       },
@@ -67,10 +67,10 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         title: "Release scope and non-goals",
         state: "Design target",
         table: { headers: ["Priority", "Scope", "Boundary"], rows: [
-          ["Implemented", "Poll OpenSky, filter FDX/UPS, publish to Redpanda, forward over WebSocket, render Leaflet markers", "No validated operational workflow"],
+          ["Implemented", "Poll OpenSky, filter FDX/UPS, publish to Redpanda, forward over WebSocket, render Leaflet markers", "Operational workflow validation remains open"],
           ["P0", "Search, current/stale state, connection state, correct units, and deterministic mock mode", "Required before user evaluation"],
           ["P1", "Operator filters, flight detail, reconnect/backoff, and multi-client delivery", "Required before a bounded pilot"],
-          ["Out of scope", "Dispatch authority, safety decisions, route optimization, alerts, historical analytics, or production SLA", "No operational-control claims"],
+          ["Out of scope", "Dispatch authority, safety decisions, route optimization, alerts, historical analytics, or production SLA", "Current scope: monitoring prototype"],
         ] },
       },
       {
@@ -79,19 +79,19 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         table: { headers: ["Type", "Requirement", "Acceptance criterion", "Status"], rows: [
           ["Data", "Represent flight identity and measurement units consistently", "The schema names units and rejects unusable coordinates", "Required"],
           ["Trust", "Expose source and freshness", "The interface distinguishes live, mock, stale, and disconnected states", "Required"],
-          ["Task", "Find a specified cargo flight", "A user can search by callsign and open its detail without scanning the map", "Proposed"],
+          ["Task", "Find a specified cargo flight", "A user can search by callsign and open its detail directly", "Proposed"],
           ["Reliability", "Recover from connection loss", "The client reconnects with bounded backoff and exposes recovery state", "Proposed"],
-          ["Distribution", "Serve the same current event to multiple viewers", "Concurrent clients receive equivalent updates rather than dividing one consumer group", "Proposed"],
-          ["Fallback", "Demonstrate without the external API", "Mock data is clearly labeled and follows the same contract", "Partially implemented"],
+          ["Distribution", "Serve the same current event to multiple viewers", "Concurrent clients receive equivalent updates through a broadcast path", "Proposed"],
+          ["Fallback", "Demonstrate during an external API outage", "Mock data is clearly labeled and follows the same contract", "Partially implemented"],
         ] },
       },
       {
-        title: "Metric tree and instrumentation",
+        title: "Success measures",
         state: "Proposed next step",
         table: { headers: ["Metric", "Baseline / target", "Method", "Decision"], rows: [
           ["Specified-flight task success", "Establish with five moderated sessions", "Give each participant a callsign to locate and inspect", "Is the workflow usable?"],
           ["Time to locate and inspect", "Compare with participant's current method", "Timed task with completion evidence", "Does the product reduce monitoring effort?"],
-          ["Event-to-render latency p50/p95", "No target until baseline run", "Timestamp producer, broker receipt, WebSocket send, and render", "Is update freshness acceptable?"],
+          ["Event-to-render latency p50/p95", "Target set after baseline run", "Timestamp producer, broker receipt, WebSocket send, and render", "Is update freshness acceptable?"],
           ["Lost or duplicate update rate", "Establish under deterministic test load", "Sequence-number reconciliation", "Can users trust the stream?"],
           ["Reconnect recovery time", "Establish after reconnect exists", "Controlled broker/backend/client interruption", "Does degraded service recover visibly?"],
           ["Stale-marker rate", "Establish after expiry policy exists", "Compare record age with displayed state", "Does the map hide uncertainty?"],
@@ -102,15 +102,15 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         state: "Design target",
         table: { headers: ["Failure", "Current behavior", "Required product behavior"], rows: [
           ["OpenSky unavailable or rate-limited", "Producer logs and retries on the next poll", "Show degraded source state or switch to clearly labeled mock mode"],
-          ["WebSocket disconnects", "Client logs disconnection without reconnecting", "Reconnect with backoff and visible status"],
-          ["Old aircraft remains visible", "No expiry behavior", "Mark stale, then remove according to a documented policy"],
+          ["WebSocket disconnects", "Client logs disconnection; reconnect is planned", "Reconnect with backoff and visible status"],
+          ["Old aircraft remains visible", "Expiry behavior is planned", "Mark stale, then remove according to a documented policy"],
           ["Multiple browsers connect", "Consumers share a group and may divide events", "Use one backend consumer with explicit fan-out"],
           ["Velocity displayed", "OpenSky meters/second is labeled kilometers/hour", "Normalize or label units correctly"],
           ["Live aircraft are outside the initial map view", "Map opens tightly around New York", "Fit view to current results or explain the bounded region"],
         ] },
       },
       {
-        title: "Rollout and decision gates",
+        title: "Rollout plan",
         state: "Proposed next step",
         table: { headers: ["Stage", "Work", "Exit gate"], rows: [
           ["1 · Reproducible build", "Pin environment and run deterministic mock flow", "Documented event reaches the browser"],
@@ -125,7 +125,7 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         state: "Proposed next step",
         bullets: [
           "Which cargo-operations role owns the monitoring task, and what decision follows inspection?",
-          "Which fields and freshness threshold make a flight state useful rather than merely interesting?",
+          "Which fields and freshness threshold make a flight state useful for an operating decision?",
           "Should the product follow individual flights, geographic regions, or operator fleets?",
           "What source terms, rate limits, and data-quality constraints apply to a real deployment?",
           "What existing workflow provides the baseline for time and effort?",
@@ -150,19 +150,19 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         table: { headers: ["Field", "Meaning", "Boundary"], rows: [
           ["icao24", "Aircraft identifier", "Optional in mock records; preferred UI key"],
           ["callsign", "Displayed flight identifier", "Used as fallback key and FDX/UPS filter"],
-          ["latitude / longitude", "Current position", "Null and invalid-coordinate handling is not explicit"],
+          ["latitude / longitude", "Current position", "Null and invalid-coordinate handling requires a documented rule"],
           ["velocity", "OpenSky velocity", "Source is meters/second; current UI incorrectly labels kilometers/hour"],
-          ["altitude", "Barometric altitude from source state", "Optional in the frontend contract"],
-          ["timestamp", "OpenSky response time", "Not currently used to expose freshness"],
+          ["altitude", "Geometric altitude from the OpenSky state", "Optional in the frontend contract"],
+          ["timestamp", "OpenSky response time", "Freshness display is planned"],
         ] },
       },
       {
         title: "Why an event broker",
         state: "Current build",
-        body: ["The central architecture decision is to place a Kafka-compatible broker between ingestion and presentation. That creates a clear boundary between a source adapter and downstream consumers, even though the current prototype does not yet demonstrate scale or production fault tolerance."],
+        body: ["The central architecture decision places a Kafka-compatible broker between ingestion and presentation. This creates a clear boundary between the source adapter and downstream consumers. Scale and production fault tolerance require further testing."],
         bullets: [
           "Python keeps source integration and mock generation inspectable.",
-          "Redpanda provides a Kafka-compatible development broker without requiring ZooKeeper.",
+          "Redpanda provides a Kafka-compatible development broker with a compact local setup.",
           "FastAPI and aiokafka bridge asynchronous event consumption to a browser protocol.",
           "React and Leaflet provide a direct spatial representation of changing coordinates.",
         ],
@@ -171,18 +171,18 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         title: "Known implementation boundaries",
         state: "Current build",
         bullets: [
-          "The producer is not part of Docker Compose and must be started separately.",
-          "Requests and kafka-python are not pinned in the root requirements file.",
-          "Each WebSocket connection creates a consumer in the same consumer group, so multiple clients can divide events rather than receive a true broadcast.",
-          "The browser has no reconnect, last-updated, or stale-marker behavior.",
-          "The frontend build succeeds independently, but an end-to-end run has not been reproduced for this portfolio review.",
+          "The producer starts separately from Docker Compose.",
+          "The root requirements file still needs pinned versions for Requests and kafka-python.",
+          "Each WebSocket connection creates a consumer in the same consumer group, which can divide events across multiple clients. A broadcast layer is planned.",
+          "Reconnect, last-updated, and stale-marker behavior are planned for the browser.",
+          "The frontend build succeeds independently. End-to-end reproduction remains pending for this portfolio review.",
         ],
       },
       {
-        title: "Production evolution",
+        title: "Path to production",
         state: "Design target",
         code: "Source adapter -> versioned event contract -> broker\n                                      -> one backend consumer\n                                      -> in-memory or durable current-state store\n                                      -> fan-out connection manager\n                                      -> clients with reconnect + freshness state\n                                      -> telemetry for lag, loss, duplicates, and age",
-        body: ["A production path would separate event consumption from individual browser connections, retain the latest state by aircraft, and make data age observable. This is a design direction, not an implemented claim."],
+        body: ["A production path would separate event consumption from individual browser connections, retain the latest state by aircraft, and make data age observable. These capabilities define the next implementation stage."],
       },
       {
         title: "Architecture decisions still required",
@@ -218,7 +218,7 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
       {
         title: "RACI",
         state: "Design target",
-        body: ["Gokul owns the current independent prototype. These roles describe a future pilot team rather than an existing organization."],
+        body: ["Gokul owns the current independent prototype. These roles define the minimum team for a future pilot."],
         table: { headers: ["Workstream", "Responsible", "Accountable", "Consulted", "Informed"], rows: [
           ["User workflow and requirements", "Product manager", "Product owner", "Cargo operations users", "Engineering"],
           ["Event contract and backend", "Backend engineer", "Technical lead", "Data-source owner", "Product"],
@@ -248,15 +248,15 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
           ["Event sequence and duplicate count", "Test delivery integrity", "Backend"],
           ["Connected clients and fan-out errors", "Detect inconsistent browser delivery", "Backend"],
           ["Client last-rendered timestamp", "Measure event-to-render behavior", "Frontend"],
-          ["Search and detail task events", "Measure usability without inventing value", "Product"],
+          ["Search and detail task events", "Measure task completion and usability", "Product"],
         ] },
       },
       {
         title: "Readiness and rollback",
         state: "Proposed next step",
         bullets: [
-          "Do not pilot until source, connection, and stale-data states are visible.",
-          "Do not publish a latency or reliability target before measuring a baseline.",
+          "Pilot entry criterion: source, connection, and stale-data states are visible.",
+          "Set latency and reliability targets after measuring a baseline.",
           "Keep a deterministic mock mode for demonstrations and failure testing.",
           "If live data becomes unavailable, stop calling the view live and label the fallback explicitly.",
           "If user research rejects the workflow, revise the user and task before expanding features.",
@@ -267,7 +267,7 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
   {
     slug: "validation",
     label: "VALIDATION",
-    title: "Reproducibility & Validation Report",
+    title: "Validation Status and Test Plan",
     summary: "Records what was independently checked at the pinned commit, what remains unverified, and the reliability and user tests required before stronger claims.",
     sections: [
       {
@@ -275,11 +275,11 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         state: "Current build",
         table: { headers: ["Check", "Result", "Boundary"], rows: [
           ["Source commit", "fc0ea6ff4c267796fb2271a63443b3f53500ff76", "Public repository snapshot"],
-          ["Frontend production build", "Passed", "Confirms React/TypeScript bundle, not the full event path"],
+          ["Frontend production build", "Passed", "Confirms the React and TypeScript bundle"],
           ["Python source compilation", "Passed", "Syntax check only"],
-          ["Docker Compose configuration", "Parsed with an obsolete-version warning", "Configuration validity, not service readiness"],
-          ["End-to-end OpenSky-to-browser flow", "Not reproduced", "No working-product claim"],
-          ["Performance and multi-client behavior", "Not measured", "No latency, scale, or reliability claim"],
+          ["Docker Compose configuration", "Parsed with an obsolete-version warning", "Confirms configuration validity; service readiness requires a full run"],
+          ["End-to-end OpenSky-to-browser flow", "Status: reproduction pending", "Working-product validation remains open"],
+          ["Performance and multi-client behavior", "Status: measurement pending", "Latency, scale, and reliability require a baseline run"],
         ] },
       },
       {
@@ -289,7 +289,7 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
           ["Mock event", "Known callsign and coordinates appear with a matching source timestamp"],
           ["Live source success", "Valid FDX/UPS records pass the documented schema"],
           ["Invalid coordinate or missing identity", "Record is rejected or visibly quarantined"],
-          ["Source failure", "View reports degraded state and does not imply freshness"],
+          ["Source failure", "View reports a degraded state and the age of the latest update"],
           ["WebSocket interruption", "Client reports disconnection and recovers after service return"],
           ["Two simultaneous browsers", "Both receive the same sequenced test events"],
           ["Expired aircraft", "Marker becomes stale and is removed according to policy"],
@@ -301,7 +301,7 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
         table: { headers: ["Measure", "Method", "Publish rule"], rows: [
           ["Event-to-render latency p50/p95", "Correlated timestamps at producer, broker, backend, and browser", "Publish only with environment and sample size"],
           ["Lost and duplicate updates", "Sequence-number reconciliation under deterministic load", "Publish observed rate, duration, and load"],
-          ["Reconnect recovery", "Timed controlled interruptions", "Publish distribution, not one anecdote"],
+          ["Reconnect recovery", "Timed controlled interruptions", "Publish results across repeated interruptions"],
           ["Freshness correctness", "Compare displayed state with event age", "Publish false-current and false-stale cases"],
           ["Concurrent-view consistency", "Compare received sequences across clients", "Publish only after fan-out behavior is corrected"],
         ] },
@@ -309,12 +309,12 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
       {
         title: "Usability protocol",
         state: "Proposed next step",
-        body: ["Recruit five participants who perform cargo-monitoring or adjacent operational work. Five is a proposed starting sample, not completed research."],
+        body: ["Recruit five participants who perform cargo-monitoring or adjacent operational work. Five is the proposed starting sample for the first research round."],
         bullets: [
           "Ask each participant to locate a specified flight, assess its freshness, and explain what they would do next.",
           "Record task success, time, errors, confidence, missing fields, and interpretation of degraded states.",
-          "Do not coach participants toward the proposed workflow.",
-          "Synthesize evidence by task and severity; do not convert opinions into an adoption claim.",
+          "Let participants complete the task in their own way.",
+          "Synthesize findings by task and severity, then separate observed behavior from stated preferences.",
         ],
       },
       {
@@ -344,7 +344,7 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
           "Use the pinned commit and record the exact environment.",
           "Run the infrastructure, backend/frontend services, and producer as separate documented steps.",
           "Prefer deterministic mock data first; label any OpenSky segment as live-source behavior.",
-          "Do not record until units, connection state, and stale-data behavior are correct.",
+          "Recording entry criterion: units, connection state, and stale-data behavior are correct.",
         ],
       },
       {
@@ -355,7 +355,7 @@ export const flightTrackerArtifacts: ProjectArtifact[] = [
           ["15–35s", "Event path", "OpenSky or mock source through Redpanda and FastAPI"],
           ["35–60s", "Map and flight detail", "What is implemented and how freshness is shown"],
           ["60–80s", "Controlled disconnect or stale record", "How uncertainty and recovery are exposed"],
-          ["80–90s", "Limitations", "This is a prototype, not an operational dispatch or safety system"],
+          ["80–90s", "Limitations", "This prototype supports monitoring research; operational dispatch and safety decisions stay with authoritative systems"],
         ] },
       },
     ],

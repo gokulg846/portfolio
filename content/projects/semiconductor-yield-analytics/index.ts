@@ -5,12 +5,12 @@ export const waferArtifacts: ProjectArtifact[] = [
     slug: "prd",
     label: "PRODUCT DEFINITION",
     title: "Product Requirements Document",
-    summary: "A retrospective portfolio PRD structured from the target user backward for a yield-excursion investigation workflow, separating synthetic build evidence from domain validity, customer value, and rollout decisions.",
+    summary: "A product brief for the synthetic yield-analysis prototype, covering the target user, investigation flow, requirements, metrics, and domain-validation plan.",
     sections: [
       {
-        title: "Artifact status and provenance",
+        title: "Context and source",
         state: "Current build",
-        body: ["Retrospective portfolio PRD created after the prototype; not a contemporaneous employer or team artifact."],
+        body: ["I created this portfolio PRD after completing the prototype. It documents the current implementation and the proposed product path."],
         table: { headers: ["Field", "Value"], rows: [
           ["Version", "2.0"],
           ["Updated", "September 2, 2026"],
@@ -21,7 +21,7 @@ export const waferArtifacts: ProjectArtifact[] = [
       {
         title: "Product brief",
         state: "Design target",
-        body: ["Build one investigation workflow that connects a low-yield wafer to its spatial signature, process context, equipment and chamber history, alarms, and lot genealogy—so a yield engineer can choose the next engineering hypothesis without manually reconstructing every join."],
+        body: ["Build one investigation workflow that connects a low-yield wafer to its spatial signature, process context, equipment and chamber history, alarms, and lot genealogy. This gives a yield engineer the context to choose the next engineering hypothesis with every join already assembled."],
         table: { headers: ["PRD field", "Decision"], rows: [
           ["Status", "Implemented synthetic-data prototype; domain workflow and value remain hypotheses"],
           ["Product owner", "Gokul Gopalakrishnan · independent end-to-end build"],
@@ -33,7 +33,7 @@ export const waferArtifacts: ProjectArtifact[] = [
         ] },
       },
       {
-        title: "Problem evidence and assumptions",
+        title: "Problem and open assumptions",
         state: "Design target",
         body: ["Problem hypothesis: a yield alert identifies loss but does not provide enough upstream context to choose the next investigation efficiently. The synthetic simulator establishes a coherent workflow; it cannot establish real-fab frequency, physical validity, or user value."],
         table: { headers: ["Statement", "Evidence state", "Implication"], rows: [
@@ -44,7 +44,7 @@ export const waferArtifacts: ProjectArtifact[] = [
         ] },
       },
       {
-        title: "Outcome and product strategy",
+        title: "Outcome to validate",
         state: "Design target",
         table: { headers: ["Layer", "Desired change", "Why it matters"], rows: [
           ["User outcome", "Move from a low-yield wafer to a defensible next hypothesis faster", "Focuses engineering time on the most relevant evidence"],
@@ -90,7 +90,7 @@ export const waferArtifacts: ProjectArtifact[] = [
         ] },
       },
       {
-        title: "Metric tree and validation contract",
+        title: "Success measures",
         state: "Proposed next step",
         table: { headers: ["Metric", "Baseline / target", "How to measure", "Decision supported"], rows: [
           ["Time to first defensible hypothesis", "Establish baseline; no target invented", "Timed current workflow versus prototype scenario", "Does the workflow reduce investigation setup?"],
@@ -114,7 +114,7 @@ export const waferArtifacts: ProjectArtifact[] = [
         ] },
       },
       {
-        title: "Rollout and decision gates",
+        title: "Rollout plan",
         state: "Proposed next step",
         table: { headers: ["Stage", "What happens", "Exit gate"], rows: [
           ["1 · Synthetic evidence release", "Publish hidden-scenario results, failures, data grains, and limitations", "Scenario-level results reproduce"],
@@ -191,7 +191,7 @@ export const waferArtifacts: ProjectArtifact[] = [
         ] },
       },
       {
-        title: "Production evolution",
+        title: "Path to production",
         state: "Proposed next step",
         bullets: [
           "Define read-only source contracts for STDF-like test, process, equipment, and MES data.",
@@ -309,7 +309,7 @@ export const waferArtifacts: ProjectArtifact[] = [
       {
         title: "External validity gate",
         state: "Proposed next step",
-        body: ["Freeze the workflow before replaying it on a de-identified public or appropriately authorized wafer dataset. Compare surfaced hypotheses with known labels or expert conclusions and publish false leads and missing context. Until that work exists, the portfolio claims a reproducible synthetic investigation workflow—not fab-valid diagnosis."],
+        body: ["Freeze the workflow before replaying it on a de-identified public or appropriately authorized wafer dataset. Compare surfaced hypotheses with known labels or expert conclusions and publish false leads and missing context. The current evidence supports a reproducible synthetic investigation workflow. Fab validation remains a future step."],
       },
     ],
   },
@@ -335,7 +335,7 @@ export const waferArtifacts: ProjectArtifact[] = [
           ["10–25s", "Four linked sources and architecture", "This local prototype links synthetic die test, process, equipment, and genealogy evidence."],
           ["25–42s", "Choose a low-yield wafer and wafer map", "Start with the spatial symptom rather than a predetermined cause."],
           ["42–65s", "Move to SPC and equipment context", "Trace the wafer upstream to process behavior, chamber history, alarms, and lot context."],
-          ["65–78s", "Pareto view", "Use the dominant failure family to prioritize the next hypothesis—not declare proven root cause."],
+          ["65–78s", "Pareto view", "Use the dominant failure family to prioritize the next hypothesis while keeping causal conclusions open."],
           ["78–90s", "Quality gate and limitation", "dbt protects data contracts. All fab data is synthetic, so physical validity and production impact are not claimed."],
         ] },
       },

@@ -5,7 +5,7 @@ import { sitePath } from "../../lib/site-path";
 
 export function workbenchArtifactMetadata(entry: WorkbenchEntry, artifact: WorkbenchArtifact): Metadata {
   return {
-    title: `${artifact.title} — ${entry.title}`,
+    title: `${artifact.title} | ${entry.title}`,
     description: artifact.summary,
     openGraph: { title: artifact.title, description: artifact.summary, images: [] },
     twitter: { title: artifact.title, description: artifact.summary, images: [] },
@@ -30,7 +30,7 @@ export function WorkbenchArtifactPage({ entry, artifact }: { entry: WorkbenchEnt
       </header>
 
       <aside className="workbench-disclosure" aria-label="Exercise disclosure">
-        <b>EVIDENCE BOUNDARY</b><p>{entry.disclosure}</p>
+        <b>CONTEXT</b><p>{entry.disclosure}</p>
       </aside>
 
       <article className="artifact-document">
