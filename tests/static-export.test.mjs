@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
 const outputRoot = new URL("../dist/client/", import.meta.url);
@@ -51,6 +51,16 @@ async function exportedHtml(path = "index.html") {
   return readFile(new URL(path, outputRoot), "utf8");
 }
 
+async function exportedHtmlFiles(directory = outputRoot) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const nested = await Promise.all(entries.map(async (entry) => {
+    const url = new URL(`${entry.name}${entry.isDirectory() ? "/" : ""}`, directory);
+    if (entry.isDirectory()) return exportedHtmlFiles(url);
+    return entry.name.endsWith(".html") ? [url] : [];
+  }));
+  return nested.flat();
+}
+
 test("exports the recruiter-facing homepage without forbidden positioning", async () => {
   const html = await exportedHtml();
 
@@ -61,7 +71,7 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /Product case studies/);
   assert.doesNotMatch(html, /AI-native/);
   assert.match(html, /AI architecture and compliance platform/);
-  assert.match(html, /CAPABILITIES DELIVERED/);
+  assert.match(html, /DELIVERY SCOPE/);
   assert.equal((html.match(/class="product-card"/g) ?? []).length, 4);
   assert.equal((html.match(/class="product-disclosure"/g) ?? []).length, 4);
   assert.equal((html.match(/class="additional-project"/g) ?? []).length, 1);
@@ -80,11 +90,12 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /href="#experience-risingphoenix-platform"/);
   assert.doesNotMatch(html, /users interviewed before MVP definition/i);
   assert.doesNotMatch(html, /WHAT I OWNED|NEXT VALIDATION/);
-  assert.match(html, /The systems run\. The artifacts make the product judgment visible\./);
-  assert.ok(html.indexOf('id="artifacts"') < html.indexOf('class="section-shell approach"'));
-  assert.ok(html.indexOf('id="artifacts"') < html.indexOf('id="experience"'));
+  assert.doesNotMatch(html, /The systems run\. The artifacts make the product judgment visible\./);
+  assert.doesNotMatch(html, /id="artifacts"|class="section-shell approach"/);
+  assert.match(html, /href="\/portfolio\/how-i-work\/"/);
+  assert.match(html, /<span>02<\/span><p>Career impact<\/p>/);
   assert.match(html, /href="\/portfolio\/workbench\/"/);
-  assert.match(html, /Independent product studies and case exercises\./);
+  assert.match(html, /Strategy and delivery exercises based on real product questions\./);
   assert.ok(html.indexOf('id="experience"') < html.indexOf('id="workbench"'));
   assert.doesNotMatch(html, /Planning and recovering a delayed Kafka\/AWS program/);
   assert.doesNotMatch(html, /100,000|\$1\.44M|99\.99%|200,000/);
@@ -109,23 +120,37 @@ test("exports the recruiter-facing homepage without forbidden positioning", asyn
   assert.match(html, /\/portfolio\/_next\//);
 });
 
+test("moves the operating approach and evidence directory to a dedicated page", async () => {
+  const html = await exportedHtml("how-i-work/index.html");
+
+  assert.match(html, /From an ambiguous problem to a release decision\./);
+  assert.match(html, /Start with the workflow/);
+  assert.match(html, /Define the release/);
+  assert.match(html, /Work inside the system/);
+  assert.match(html, /Validate the outcome/);
+  assert.match(html, /Open the work behind each project\./);
+  assert.match(html, /Follow the case study →/);
+  assert.match(html, /href="\/portfolio\/projects\/real-time-cargo-flight-tracker\/"/);
+  assert.match(html, /href="\/portfolio\/projects\/real-time-cargo-flight-tracker\/prd\/"/);
+});
+
 test("exports the Product Workbench without mixing exercises into career evidence", async () => {
   const indexHtml = await exportedHtml("workbench/index.html");
   assert.match(indexHtml, /Product Workbench/);
   assert.match(indexHtml, /Independent product studies and case exercises/);
-  assert.match(indexHtml, /Planning and recovering a delayed Kafka\/AWS program/);
+  assert.match(indexHtml, /Recovering a delayed Kafka and AWS program/);
   assert.match(indexHtml, /href="\/portfolio\/workbench\/kafka-iot-program\/"/);
 
   for (const [entry, artifacts] of Object.entries(workbenchArtifacts)) {
     const entryHtml = await exportedHtml(`workbench/${entry}/index.html`);
-    assert.match(entryHtml, /Independent interview case exercise/);
-    assert.match(entryHtml, /scenario assumptions or targets/i);
+    assert.match(entryHtml, /independent interview exercise/i);
+    assert.match(entryHtml, /scenario inputs or targets/i);
     assert.doesNotMatch(entryHtml, /professional or production results[.!]?<\/span>/i);
 
     for (const [artifactIndex, artifact] of artifacts.entries()) {
       const artifactHtml = await exportedHtml(`workbench/${entry}/${artifact}/index.html`);
       const normalizedArtifactHtml = artifactHtml.replaceAll("<!-- -->", "");
-      assert.match(artifactHtml, /EVIDENCE BOUNDARY/);
+      assert.match(artifactHtml, /CONTEXT/);
       assert.match(normalizedArtifactHtml, new RegExp(`Artifact ${artifactIndex + 1} of ${artifacts.length}`));
       assert.match(artifactHtml, new RegExp(`href="/portfolio/workbench/${entry}/"`));
       if (artifactIndex > 0) {
@@ -163,6 +188,13 @@ test("exports all project overviews and every published operating artifact", asy
     assert.doesNotMatch(projectHtml, /WHAT I OWNED/);
     assert.match(projectHtml, /KEY PRODUCT DECISION/);
     assert.match(projectHtml, /CURRENT LIMITS/);
+    assert.match(projectHtml, /PRODUCT ARTIFACTS/);
+    for (const step of ["DEFINE", "DECIDE", "DELIVER", "VALIDATE"]) {
+      assert.match(projectHtml, new RegExp(step));
+    }
+    assert.ok(projectHtml.indexOf("DEFINE") < projectHtml.indexOf("DECIDE"));
+    assert.ok(projectHtml.indexOf("DECIDE") < projectHtml.indexOf("DELIVER"));
+    assert.ok(projectHtml.indexOf("DELIVER") < projectHtml.indexOf("VALIDATE"));
     assert.doesNotMatch(projectHtml, /Demo guide|Recording Guide|recording-guide/i);
 
     for (const [artifactIndex, artifact] of artifacts.entries()) {
@@ -229,21 +261,28 @@ test("exports decision-ready PRDs for all projects", async () => {
     const html = (await exportedHtml(`projects/${project}/prd/index.html`)).replaceAll("<!-- -->", "");
     for (const section of [
       "Product brief",
-      "Artifact status and provenance",
-      "Problem evidence and assumptions",
+      "Context and source",
+      "Problem and open assumptions",
       "Requirements and acceptance criteria",
-      "Metric tree",
+      "Success measures",
       "Failure",
-      "Rollout and decision gates",
+      "Rollout plan",
       "Open questions",
     ]) {
       assert.match(html, new RegExp(section, "i"));
     }
     assert.match(html, /Hypothesized current workflow/);
-    assert.match(html, /Retrospective portfolio PRD/);
+    assert.match(html, /I created this portfolio PRD/);
     assert.match(html, /Source commit/);
     assert.match(html, /Product owner/);
     assert.match(html, /Baseline \/ target/);
+  }
+});
+
+test("keeps public copy free of em dashes", async () => {
+  const htmlFiles = await exportedHtmlFiles();
+  for (const file of htmlFiles) {
+    assert.doesNotMatch(await readFile(file, "utf8"), /—/);
   }
 });
 

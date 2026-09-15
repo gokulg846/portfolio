@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import type { ProjectCaseStudy } from "../../content/types";
 import { publicArtifacts } from "../../content/projects/catalog";
+import { artifactJourney } from "../../content/site";
 import { sitePath } from "../../lib/site-path";
 
 export function projectMetadata(project: ProjectCaseStudy): Metadata {
   return {
-    title: `${project.title} — Gokul Gopalakrishnan`,
+    title: `${project.title} | Gokul Gopalakrishnan`,
     description: project.summary,
     openGraph: { title: project.title, description: project.summary, images: [] },
     twitter: { title: project.title, description: project.summary, images: [] },
@@ -55,21 +56,35 @@ export function ProjectPage({ project }: { project: ProjectCaseStudy }) {
       {artifacts.length > 0 && (
         <section className="case-artifacts">
           <div>
-            <p className="case-section-label">PRODUCT OPERATING ARTIFACTS</p>
-            <h2>The work around the build.</h2>
+            <p className="case-section-label">PRODUCT ARTIFACTS</p>
+            <h2>The product work behind the build.</h2>
           </div>
-          <div className="artifact-list">
-            {artifacts.map((artifact, index) => (
-              <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>
-                <span>{String(index + 1).padStart(2, "0")} · {artifact.label}</span><h3>{artifact.title}</h3><p>{artifact.summary}</p><b>Read artifact →</b>
-              </a>
-            ))}
-          </div>
+          <ol className="artifact-journey">
+            {artifactJourney.map((step, index) => {
+              const matches = artifacts.filter((artifact) => step.slugs.some((slug) => slug === artifact.slug));
+              if (matches.length === 0) return null;
+
+              return (
+                <li key={step.label}>
+                  <span>{String(index + 1).padStart(2, "0")} · {step.label}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                  <div>
+                    {matches.map((artifact) => (
+                      <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>
+                        {artifact.title} →
+                      </a>
+                    ))}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
         </section>
       )}
 
       <section className="case-source">
-        <p>Inspect the implementation separately from the product framing.</p>
+        <p>See the source code behind this case study.</p>
         <a href={project.repository} target="_blank" rel="noreferrer">Source repository ↗</a>
       </section>
     </main>

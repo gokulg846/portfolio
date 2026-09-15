@@ -1,4 +1,4 @@
-import { additionalProjects, flagshipProjects, projects, publicArtifacts } from "../content/projects/catalog";
+import { additionalProjects, flagshipProjects, publicArtifacts } from "../content/projects/catalog";
 import { careerHighlights, experience } from "../content/experience";
 import { workbenchEntries } from "../content/workbench/catalog";
 import { sitePath } from "../lib/site-path";
@@ -6,13 +6,6 @@ import { resumeUrl } from "../content/site";
 import { SiteNav } from "./site-nav";
 
 export const dynamic = "force-static";
-
-const artifactGroups = [
-  { label: "DEFINE", title: "Product definition", slugs: ["prd"], description: "Primary user, job to be done, user journey, prioritized MVP, non-goals, and success metric tree." },
-  { label: "DECIDE", title: "Technical judgment", slugs: ["technical-design", "model-card"], description: "Architecture, stack rationale, contracts, tradeoffs, and data or AI guardrails." },
-  { label: "DELIVER", title: "Delivery leadership", slugs: ["program-plan"], description: "Milestones, dependencies, RACI, RAID, launch gates, ownership, and rollback." },
-  { label: "VALIDATE", title: "Validation and learning", slugs: ["validation", "evaluation"], description: "Acceptance scenarios, evaluation protocol, pilot scorecard, failure analysis, and launch gates." },
-];
 
 export default function Home() {
   return (
@@ -23,7 +16,7 @@ export default function Home() {
         <div className="hero-meta"><span>PRODUCT EXECUTION · DATA · AI · ENGINEERING</span><span>WEST LAFAYETTE, IN · OPEN TO RELOCATION</span></div>
         <div className="hero-grid">
           <div><h1>I solve technical problems and deliver products that work.</h1></div>
-          <div className="hero-copy"><p>I bring a mechanical-engineering foundation and 3+ years of experience across automotive manufacturing, technology consulting, and an early-stage AI startup. I’ve built validation programs, industrial data and ML systems, computer-vision workflows, and internal AI tools.</p><p>I work where product and engineering meet: turning ambiguous problems into requirements, aligning the technical work, and staying through validation and release.</p><div className="hero-actions"><a className="primary-button" href="#projects">Explore product work <span>↓</span></a><a className="secondary-button" href="#experience">See career impact <span>↓</span></a><a className="text-link" href="mailto:gokulg846@gmail.com">Email me</a></div></div>
+          <div className="hero-copy"><p>I bring a mechanical-engineering foundation and 3+ years of experience across automotive manufacturing, technology consulting, and an early-stage AI startup. I’ve built validation programs, industrial data and ML systems, computer-vision workflows, and internal AI tools.</p><p>I take ownership from the first messy question to a validated release. I shape the product, make technical tradeoffs, and keep the team moving.</p><div className="hero-actions"><a className="primary-button" href="#projects">Explore product work <span>↓</span></a><a className="secondary-button" href="#experience">See career impact <span>↓</span></a><a className="secondary-button" href={sitePath("/how-i-work/")}>How I work <span>→</span></a><a className="text-link" href="mailto:gokulg846@gmail.com">Email me</a></div></div>
         </div>
         <p className="proof-label">SELECTED CAREER IMPACT</p>
         <div className="proof-rail" aria-label="Selected career impact">
@@ -69,31 +62,33 @@ export default function Home() {
         })}
       </section>
 
+      {/* Hidden from the homepage. Artifact navigation now lives inside each project case study.
       <section className="section-shell evidence" id="artifacts" aria-labelledby="artifacts-title">
         <div className="section-label"><span>02</span><p>Product operating artifacts</p></div>
         <div className="evidence-head"><h2 id="artifacts-title">The systems run. The artifacts make the product judgment visible.</h2><p>Each case study includes the work around the implementation: who it serves, why the scope was chosen, how delivery is managed, and what would justify a launch.</p></div>
-        <div className="artifact-capabilities">{artifactGroups.map((group) => <div key={group.label}><span>{group.label}</span><h3>{group.title}</h3><p>{group.description}</p></div>)}</div>
-        <div className="artifact-matrix-wrap"><table className="artifact-matrix"><thead><tr><th>PROJECT</th>{artifactGroups.map((group) => <th key={group.label}>{group.label}</th>)}</tr></thead><tbody>{projects.map((project) => <tr key={project.slug}><th data-label="PROJECT"><a href={sitePath(`/projects/${project.slug}/`)}>{project.title}</a></th>{artifactGroups.map((group) => { const matches = publicArtifacts(project).filter((artifact) => group.slugs.includes(artifact.slug)); return <td data-label={group.label} key={group.label}>{matches.map((artifact) => <a key={artifact.slug} href={sitePath(`/projects/${project.slug}/${artifact.slug}/`)}>{artifact.title}</a>)}</td>; })}</tr>)}</tbody></table></div>
       </section>
+      */}
 
+      {/* Moved to /how-i-work/ so the homepage stays focused.
       <section className="section-shell approach" aria-labelledby="approach-title">
         <div className="section-label"><span>03</span><p>How I execute</p></div>
-        <div className="approach-grid"><h2 id="approach-title">Start with the decision. Stay through delivery.</h2><ol><li><b>01</b><div><h3>Understand the workflow</h3><p>Use interviews, field returns, operating data, and existing failure modes to define the problem worth solving.</p></div></li><li><b>02</b><div><h3>Make scope explicit</h3><p>Translate the problem into users, requirements, non-goals, dependencies, and a testable first release.</p></div></li><li><b>03</b><div><h3>Build with the team</h3><p>Work close enough to data, models, software, and physical systems to make credible trade-offs.</p></div></li><li><b>04</b><div><h3>Prove what changed</h3><p>Separate implementation evidence from adoption and business outcomes—and make the next validation decision explicit.</p></div></li></ol></div>
+        <div className="approach-grid"><h2 id="approach-title">Start with the decision. Stay through delivery.</h2><ol><li><b>01</b><div><h3>Understand the workflow</h3><p>Use interviews, field returns, operating data, and existing failure modes to define the problem worth solving.</p></div></li><li><b>02</b><div><h3>Make scope explicit</h3><p>Translate the problem into users, requirements, non-goals, dependencies, and a testable first release.</p></div></li><li><b>03</b><div><h3>Build with the team</h3><p>Work close enough to data, models, software, and physical systems to make credible trade-offs.</p></div></li><li><b>04</b><div><h3>Prove what changed</h3><p>Separate implementation evidence from adoption and business outcomes. Use that evidence to make the next validation decision explicit.</p></div></li></ol></div>
       </section>
+      */}
 
       <section className="section-shell experience" id="experience" aria-labelledby="experience-title">
-        <div className="section-label"><span>04</span><p>Career impact</p></div>
-        <div className="experience-head"><div><p className="eyebrow">BREADTH WITH A DIRECTION</p><h2 id="experience-title">Engineering depth, applied to product delivery.</h2></div><p>Selected programs show the operating problem, my ownership, the decision I made, and the result—followed by the technical depth behind the work.</p></div>
+        <div className="section-label"><span>02</span><p>Career impact</p></div>
+        <div className="experience-head"><div><p className="eyebrow">CAREER EXPERIENCE</p><h2 id="experience-title">I have delivered across manufacturing, data platforms, and enterprise AI.</h2></div><p>These examples show how I framed the problem, owned the work, made the key tradeoff, and delivered the outcome. Each one also shows the technical work behind it.</p></div>
         <div className="experience-list">{experience.map((item, index) => <article className="experience-card" id={item.id} key={item.company}><div className="experience-meta"><span>{String(index + 1).padStart(2, "0")}</span><time>{item.period}</time></div><div className="experience-copy"><h3>{item.company}</h3><b>{item.role}</b><p>{item.summary}</p>{item.work.length > 0 && <ul>{item.work.map((line) => <li key={line}>{line}</li>)}</ul>}{item.projects.map((project) => <section className="experience-project" id={project.id} key={project.id} aria-labelledby={`${project.id}-title`}><p className="experience-project-kicker">{project.kicker}</p><h4 id={`${project.id}-title`}>{project.title}</h4><div className="experience-project-grid"><div><span>CHALLENGE</span><p>{project.challenge}</p></div><div><span>MY OWNERSHIP</span><p>{project.ownership}</p></div><div><span>KEY DECISION</span><p>{project.decision}</p></div><div className="experience-outcome"><span>{project.outcomeLabel}</span><p>{project.outcome}</p></div></div><div className="experience-tech"><span>TECHNICAL DEPTH</span>{project.technical.map((technicalItem) => <b key={technicalItem}>{technicalItem}</b>)}</div></section>)}{item.supporting.length > 0 && <div className="supporting-work"><span>ADDITIONAL OWNERSHIP</span><ul>{item.supporting.map((line) => <li key={line}>{line}</li>)}</ul></div>}</div></article>)}</div>
       </section>
 
       {workbenchEntries.length > 0 && <section className="section-shell workbench-teaser" id="workbench" aria-labelledby="workbench-teaser-title">
-        <div className="workbench-teaser-label"><span>05</span><p>Product Workbench</p></div>
-        <div className="workbench-teaser-copy"><h2 id="workbench-teaser-title">Independent product studies and case exercises.</h2><p>Program plans, product critiques, and improvement proposals that show how I approach unfamiliar product problems.</p></div>
+        <div className="workbench-teaser-label"><span>03</span><p>Product Workbench</p></div>
+        <div className="workbench-teaser-copy"><h2 id="workbench-teaser-title">Strategy and delivery exercises based on real product questions.</h2><p>I turn public product signals and interview scenarios into PRDs, program plans, and improvement proposals.</p></div>
         <a href={sitePath("/workbench/")}>Explore the workbench →</a>
       </section>}
 
-      <footer><span>LET’S BUILD SOMETHING USEFUL.</span><h2>Need a technical product manager who can work inside the engineering details?</h2><div className="contact-links"><a href="mailto:gokulg846@gmail.com">Email <span>↗</span></a><a href="https://www.linkedin.com/in/gokulgopal" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/gokulg846" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href={resumeUrl} target="_blank" rel="noreferrer">Résumé <span>↗</span></a></div><div className="footer-meta"><span>GOKUL GOPALAKRISHNAN</span><span>DATA · AI · ENGINEERING · PRODUCT EXECUTION</span></div></footer>
+      <footer><span>LET’S BUILD SOMETHING USEFUL.</span><h2>I’m looking for PM and TPM roles where technical depth improves product decisions.</h2><div className="contact-links"><a href="mailto:gokulg846@gmail.com">Email <span>↗</span></a><a href="https://www.linkedin.com/in/gokulgopal" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/gokulg846" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href={resumeUrl} target="_blank" rel="noreferrer">Résumé <span>↗</span></a></div><div className="footer-meta"><span>GOKUL GOPALAKRISHNAN</span><span>DATA · AI · ENGINEERING · PRODUCT EXECUTION</span></div></footer>
     </main>
   );
 }

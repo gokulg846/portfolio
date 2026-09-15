@@ -5,7 +5,7 @@ import { sitePath } from "../../lib/site-path";
 
 export function artifactMetadata(project: ProjectCaseStudy, artifact: ProjectArtifact): Metadata {
   return {
-    title: `${artifact.title} — ${project.title}`,
+    title: `${artifact.title} | ${project.title}`,
     description: artifact.summary,
     openGraph: { title: artifact.title, description: artifact.summary, images: [] },
     twitter: { title: artifact.title, description: artifact.summary, images: [] },
@@ -24,16 +24,16 @@ export function ArtifactPage({ project, artifact }: { project: ProjectCaseStudy;
     <main className="artifact-main">
       <header className="artifact-hero">
         <a className="case-back" href={sitePath(`/projects/${project.slug}/`)}>← {project.title}</a>
-        <p className="case-eyebrow">{artifact.label} · PRODUCT OPERATING ARTIFACT</p>
+        <p className="case-eyebrow">{artifact.label} · {project.title}</p>
         <h1>{artifact.title}</h1>
         <p>{artifact.summary}</p>
       </header>
 
       <aside className="artifact-boundary" aria-label="Evidence boundary">
-        <b>READING THE EVIDENCE</b>
-        <span><i className="state-current" />Current build — inspectable in the repository</span>
-        <span><i className="state-target" />Design target — intended product behavior</span>
-        <span><i className="state-proposed" />Proposed next step — required before a claim or launch</span>
+        <b>EVIDENCE STATUS</b>
+        <span><i className="state-current" />Current build: inspectable in the repository</span>
+        <span><i className="state-target" />Design target: intended product behavior</span>
+        <span><i className="state-proposed" />Next step: evidence required before launch or stronger claims</span>
       </aside>
 
       <article className="artifact-document">

@@ -5,12 +5,12 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
     slug: "prd",
     label: "PRODUCT DEFINITION",
     title: "Product Requirements Document",
-    summary: "A retrospective portfolio PRD structured from the target user backward, separating what is built from the customer, measurement, and rollout evidence still required.",
+    summary: "A product brief for the traceability prototype, covering the quality engineer task, investigation flow, requirements, metrics, risks, and pilot plan.",
     sections: [
       {
-        title: "Artifact status and provenance",
+        title: "Context and source",
         state: "Current build",
-        body: ["Retrospective portfolio PRD created after the prototype; not a contemporaneous employer or team artifact."],
+        body: ["I created this portfolio PRD after completing the prototype. It documents the current implementation and the proposed product path."],
         table: { headers: ["Field", "Value"], rows: [
           ["Version", "2.0"],
           ["Updated", "September 2, 2026"],
@@ -21,29 +21,29 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
       {
         title: "Product brief",
         state: "Design target",
-        body: ["Build an investigation aid for a manufacturing quality engineer who needs to assemble the evidence connected to a suspect part. The current prototype joins four synthetic source families into one part-level view; it supports investigation but does not initiate containment or determine physical root cause."],
+        body: ["Build an investigation aid for a manufacturing quality engineer who needs to assemble the records connected to a suspect part. The prototype joins four synthetic source families into one part-level view. Quality engineers retain containment and root-cause decisions."],
         table: { headers: ["PRD field", "Decision"], rows: [
           ["Status", "Implemented prototype; customer problem and value remain hypotheses"],
           ["Product owner", "Gokul Gopalakrishnan · independent end-to-end build"],
           ["Primary-user hypothesis", "Manufacturing quality engineer conducting containment"],
-          ["Target job", "Inspect dimensional, process, torque, and supplier evidence without manually joining four systems"],
+          ["Target job", "Inspect dimensional, process, torque, and supplier records in one connected view"],
           ["Hypothesized current workflow", "Export or query each source, reconcile identifiers, and rebuild the evidence trail manually"],
           ["Release decision", "Prove that one governed part history can support a complete, inspectable investigation"],
         ] },
       },
       {
-        title: "Problem evidence and assumptions",
+        title: "Problem and open assumptions",
         state: "Design target",
-        body: ["Problem hypothesis: containment work becomes slower and less reliable when inspection, process, torque, and supplier evidence must be reconciled manually. This workflow has not yet been validated with plant users, so the PRD distinguishes repository evidence from customer assumptions."],
+        body: ["Problem hypothesis: containment work becomes slower and less reliable when inspection, process, torque, and supplier records require manual reconciliation. Plant interviews and a historical containment replay would test the assumed workflow, time savings, and decision value."],
         table: { headers: ["Statement", "Evidence state", "Implication"], rows: [
           ["Four source families exist at different grains", "Implemented in the synthetic source contracts", "The product must preserve grain and lineage before joining"],
           ["Quality engineers perform this reconciliation manually", "Unvalidated problem hypothesis", "Confirm through workflow interviews or one retrospective case"],
-          ["Stable part_id and batch_id values can connect the evidence", "Technical assumption", "Measure unresolved genealogy; never silently drop unmatched records"],
+          ["Stable part_id and batch_id values can connect the records", "Technical assumption", "Measure unresolved genealogy and surface every unmatched record"],
           ["A unified view improves containment decisions", "Unvalidated value hypothesis", "Test task time, completeness, false inclusion, and false exclusion"],
         ] },
       },
       {
-        title: "Outcome and product strategy",
+        title: "Outcome to validate",
         state: "Design target",
         table: { headers: ["Layer", "Desired change", "Why it matters"], rows: [
           ["User outcome", "Reach a complete evidence set for a suspect part faster", "Reduces time spent assembling context before engineering judgment begins"],
@@ -59,7 +59,7 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
           ["1 · Set context", "Narrow the production window", "Filter by date, machine, and quality condition", "Implemented"],
           ["2 · Select a part", "Open one suspect record", "Load the governed part summary", "Implemented"],
           ["3 · Inspect evidence", "Compare dimensional, torque, process, and material context", "Show linked source evidence in one workflow", "Implemented"],
-          ["4 · Assess gaps", "Understand whether evidence is incomplete", "Expose missing source relationships instead of treating them as healthy", "Implemented"],
+          ["4 · Assess gaps", "Understand whether records are incomplete", "Expose every missing source relationship as an investigation item", "Implemented"],
           ["5 · Determine scope", "Review candidate affected parts", "Generate a candidate population with reason codes", "Proposed P1"],
           ["6 · Hand off", "Retain the investigation evidence", "Export a governed evidence package", "Proposed P1"],
         ] },
@@ -68,35 +68,35 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
         title: "Release scope and non-goals",
         state: "Design target",
         table: { headers: ["Priority", "In scope", "Boundary"], rows: [
-          ["P0", "Preserve and validate all four source contracts", "Synthetic inputs; no production connectors"],
-          ["P0", "Publish one inspectable history per part", "Decision support only; no automated disposition"],
-          ["P0", "Filter context and inspect a suspect part", "No collaborative case management"],
-          ["P0", "Expose missing traceability", "No inferred replacement for missing source evidence"],
-          ["P1", "Generate an affected-population candidate list", "Not implemented; requires validated selection rules"],
-          ["P1", "Export containment evidence", "Not implemented; requires policy, access, and retention decisions"],
-          ["Out of scope", "MES/QMS replacement, physical root-cause automation, production control", "No deployment, savings, yield, scrap, or warranty claim"],
+          ["P0", "Preserve and validate all four source contracts", "Current inputs are synthetic; production connectors are future work"],
+          ["P0", "Publish one inspectable history per part", "Quality engineers retain disposition decisions"],
+          ["P0", "Filter context and inspect a suspect part", "Collaborative case management is future work"],
+          ["P0", "Expose missing traceability", "Missing source records remain visible"],
+          ["P1", "Generate an affected-population candidate list", "Status: planned; requires validated selection rules"],
+          ["P1", "Export containment evidence", "Status: planned; requires policy, access, and retention decisions"],
+          ["Out of scope", "MES/QMS replacement, physical root-cause automation, production control", "Validation status: synthetic prototype"],
         ] },
       },
       {
         title: "Requirements and acceptance criteria",
         state: "Design target",
         table: { headers: ["Type", "Requirement", "Acceptance criterion", "Status"], rows: [
-          ["User", "Inspect one suspect part", "Reviewer can see available evidence from all four sources without leaving the workflow", "Implemented"],
+          ["User", "Inspect one suspect part", "Reviewer can see available records from all four sources in one view", "Implemented"],
           ["User", "Recognize incomplete evidence", "Every missing required relationship has an explicit state", "Implemented"],
           ["Data", "Protect source grain and keys", "Tests reject duplicate grains, invalid identifiers, broken relationships, and invalid ranges", "Implemented"],
           ["System", "Produce reproducible output", "The same synthetic seed and source set produce the same governed marts", "Implemented"],
           ["Nonfunctional", "Preserve auditability", "Raw source evidence remains available and rule logic is version-controlled", "Implemented locally"],
-          ["Guardrail", "Keep containment human-owned", "No interface action presents a candidate list as an approved containment decision", "Required for P1"],
+          ["Guardrail", "Keep containment human-owned", "The interface labels candidate lists for review and approval", "Required for P1"],
         ] },
       },
       {
-        title: "Metric tree and instrumentation",
+        title: "Success measures",
         state: "Proposed next step",
         table: { headers: ["Metric", "Baseline / target", "How to measure", "Decision supported"], rows: [
-          ["Time to assemble evidence", "Establish baseline; no target invented", "Timed current workflow versus prototype on the same case", "Is the workflow materially faster?"],
+          ["Time to assemble records", "Target set after baseline", "Timed current workflow versus prototype on the same case", "Is the workflow materially faster?"],
           ["Traceability completeness", "Baseline from reconciled source population", "Eligible linked records divided by expected records", "Can the evidence set be trusted?"],
           ["Unresolved identifier rate", "Must be visible; acceptable level set by quality owner", "Exception report by source and reason", "Can the case proceed or must data be corrected?"],
-          ["Candidate precision / recall", "No target until historical cost tradeoff is known", "Compare hidden ground truth with proposed affected population", "Is P1 safe enough for shadow use?"],
+          ["Candidate precision / recall", "Target set after historical cost review", "Compare hidden ground truth with proposed affected population", "Is P1 safe enough for shadow use?"],
           ["Task completion", "Establish with target users", "Observed scenario: locate, inspect, explain gaps, choose next step", "Is the workflow understandable?"],
         ] },
       },
@@ -106,21 +106,21 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
         table: { headers: ["Risk or failure", "Required behavior", "Fallback / owner"], rows: [
           ["Identifier mismatch", "Keep the record in an unresolved exception state", "Quality/data owner reconciles before use"],
           ["Stale certificate or delayed source", "Show source freshness and prevent a false complete state", "Return to source system or manual evidence check"],
-          ["Source outage", "Do not publish a misleading clean investigation", "Use the existing manual workflow"],
+          ["Source outage", "Show the unavailable source and mark the investigation incomplete", "Use the existing manual workflow"],
           ["False exclusion from candidate population", "Require reason codes and human review", "Quality owner defines final containment scope"],
-          ["Unauthorized production data", "Enforce source access and evidence retention policy", "Do not ingest until governance is approved"],
+          ["Unauthorized production data", "Enforce source access and retention policy", "Governance approval is an ingestion entry criterion"],
         ] },
       },
       {
-        title: "Rollout and decision gates",
+        title: "Rollout plan",
         state: "Proposed next step",
         table: { headers: ["Stage", "What happens", "Exit gate"], rows: [
           ["1 · Retrospective replay", "Run one known containment case with hidden ground truth", "Completeness and false inclusions/exclusions reconciled"],
           ["2 · Task review", "Observe quality engineers complete the defined investigation", "Workflow is understandable and decision evidence is sufficient"],
-          ["3 · Shadow workflow", "Run read-only beside the existing process", "No critical traceability gaps; failure behavior is accepted"],
+          ["3 · Shadow workflow", "Run read-only beside the existing process", "Critical traceability gaps are resolved and failure behavior is accepted"],
           ["4 · Limited pilot", "Use on a bounded scope with quality-owner approval", "Operating ownership, access, rollback, and telemetry are in place"],
         ] },
-        body: ["The manual investigation process remains the rollback path. A quality owner—not the product—retains authority over containment and disposition."],
+        body: ["The manual investigation process remains the rollback path. A quality owner retains authority over containment and disposition."],
       },
       {
         title: "Open questions before pilot",
@@ -163,31 +163,31 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
           ["Bronze", "Preserve daily source records as Parquet", "Retain raw evidence for replay and audit"],
           ["Silver", "Type, clean, validate, and join source contracts", "Reject invalid keys, categories, relationships, and physical ranges"],
           ["Gold", "Publish one investigation record per part", "Flag missing traceability and expose contributing quality conditions"],
-          ["Interface", "Filter trends and drill into a part", "Show available evidence; do not imply missing data is healthy"],
+          ["Interface", "Filter trends and drill into a part", "Show available records and label every missing source"],
         ] },
       },
       {
         title: "Technology decisions",
         state: "Current build",
         bullets: [
-          "Parquet keeps the Bronze layer inspectable and partitionable without a hosted service.",
+          "Parquet keeps the Bronze layer inspectable and partitionable in the local prototype.",
           "DuckDB runs analytical joins locally while preserving SQL semantics appropriate for a warehouse prototype.",
           "dbt makes metric logic, lineage, and data tests version-controlled.",
           "Prefect provides an orchestration path while the direct Python ingestion command remains reproducible.",
-          "Streamlit provides a fast investigation surface; it is not treated as the final production UX.",
+          "Streamlit provides a fast investigation surface for the prototype. A production UX would follow user testing.",
         ],
       },
       {
         title: "Alternatives and tradeoffs",
         state: "Design target",
-        table: { headers: ["Alternative", "Why it was not selected for this prototype"], rows: [
+        table: { headers: ["Alternative", "Reason for the current choice"], rows: [
           ["Dashboard directly over generated CSV files", "Faster initially, but hides source contracts, lineage, and grain protection"],
           ["Hosted warehouse and orchestration", "More production-like, but introduces accounts and cost before the workflow is validated"],
-          ["Opaque predictive quality score", "Would imply calibrated predictive validity that the synthetic data cannot establish"],
+          ["Opaque predictive quality score", "Calibrated predictive validity requires plant data"],
         ] },
       },
       {
-        title: "Production evolution",
+        title: "Path to production",
         state: "Proposed next step",
         bullets: [
           "Define owners, SLAs, and access boundaries for every source contract.",
@@ -202,7 +202,7 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
   {
     slug: "program-plan",
     label: "DELIVERY LEADERSHIP",
-    title: "TPM Delivery Pack",
+    title: "Delivery Plan",
     summary: "Turns the prototype into an explicit program: milestones, ownership, dependencies, risks, decisions, readiness gates, and fallback behavior.",
     sections: [
       {
@@ -213,14 +213,14 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
           ["2 · Contract baseline", "Source grains, identifiers, owners, freshness expectations, and exception behavior documented"],
           ["3 · Transformation MVP", "Traceability mart and source drill-down complete with automated contract gates"],
           ["4 · Scenario validation", "Known scenarios reconcile to expected part histories and missing-data behavior"],
-          ["5 · Shadow pilot", "Historical case completed without changing the existing containment process"],
+          ["5 · Shadow pilot", "Historical case completed beside the existing containment process"],
           ["6 · Pilot decision", "User task, completeness, false-inclusion, and false-exclusion results reviewed"],
         ] },
       },
       {
         title: "RACI",
         state: "Design target",
-        body: ["Gokul currently performs the product, program, and implementation roles for the portfolio build. This RACI describes the minimum operating model required for a real pilot; it does not imply that this team existed."],
+        body: ["Gokul currently performs the product, program, and implementation roles for the portfolio build. This RACI defines the minimum operating model for a future pilot."],
         table: { headers: ["Workstream", "Responsible", "Accountable", "Consulted", "Informed"], rows: [
           ["Problem and metric definition", "Product owner", "Quality owner", "Process and supplier quality", "Data team"],
           ["Source contracts", "Data engineer", "Source-system owner", "Quality engineer", "Product owner"],
@@ -244,7 +244,7 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
         title: "RAID log",
         state: "Design target",
         table: { headers: ["Type", "Item", "Response"], rows: [
-          ["Risk", "Synthetic patterns do not represent plant variability", "Keep business value hypothetical; shadow-test on authorized historical data"],
+          ["Risk", "Synthetic patterns cover a narrow range of plant variability", "Keep business value hypothetical; shadow-test on authorized historical data"],
           ["Risk", "Correct SQL encodes the wrong metric", "Require metric dictionary and quality-owner review"],
           ["Risk", "False exclusions narrow containment incorrectly", "Fail closed on missing traceability and require human approval"],
           ["Assumption", "Stable cross-system identifiers exist", "Measure unresolved joins before a pilot"],
@@ -258,7 +258,7 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
         bullets: [
           "Historical-case reconciliation complete and signed off by the quality owner.",
           "Source completeness and unresolved joins visible in the interface.",
-          "Candidate outputs cannot automatically change containment or disposition.",
+          "Quality owners approve every containment or disposition change.",
           "Support owner, incident path, audit retention, and access controls named.",
           "Fallback remains the existing approved investigation and containment process.",
         ],
@@ -287,11 +287,11 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
         state: "Proposed next step",
         table: { headers: ["Scenario", "Expected reviewer-visible behavior"], rows: [
           ["Complete part history", "All four source families are available and attributable"],
-          ["Missing supplier certificate", "Part is not silently treated as healthy; missing genealogy is explicit"],
+          ["Missing supplier certificate", "Missing genealogy appears as an explicit investigation item"],
           ["Dimensional failure", "Failed dimension and supporting measurement are inspectable"],
           ["Torque failure", "Failed joint and audit evidence are inspectable"],
           ["Duplicate or broken identifier", "Build or exception output prevents an ambiguous part history"],
-          ["No-defect case", "System avoids creating a false defect narrative"],
+          ["Healthy case", "System preserves the healthy state and source records"],
         ] },
       },
       {
@@ -301,7 +301,7 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
         bullets: [
           "Measure completion time, errors, confidence, and requests for missing context.",
           "Ask the reviewer to explain the metric denominator and whether missing data could change the conclusion.",
-          "Record which views changed the next action rather than asking whether the dashboard looks useful.",
+          "Record which views changed the next action and why.",
         ],
       },
       {
@@ -312,7 +312,7 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
           "Freeze metric and candidate-generation logic before revealing the known result.",
           "Reconcile source completeness and the affected population.",
           "Review false inclusions, false exclusions, and unresolved records with a quality owner.",
-          "Do not change the approved production workflow during shadow evaluation.",
+          "Keep the approved production workflow in place during shadow evaluation.",
         ],
       },
       {
@@ -334,7 +334,7 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
     title: "Recording Guide",
     // Private working material. Change to "public" only after a validated video URL exists.
     visibility: "private",
-    summary: "A verified setup path and a concise recording narrative focused on the quality-engineer workflow—not implementation counts.",
+    summary: "A verified setup path and a concise recording narrative focused on the quality engineer workflow and its decisions.",
     sections: [
       {
         title: "Setup",
@@ -349,14 +349,14 @@ export const manufacturingArtifacts: ProjectArtifact[] = [
           ["0–10s", "Dashboard and product title", "A quality engineer investigating a suspect part often has to assemble evidence from separate inspection, machine, torque, and supplier systems."],
           ["10–25s", "Date, machine, and root-cause filters", "This prototype brings the four linked synthetic sources into one investigation workflow."],
           ["25–50s", "Select a part and inspect its summary", "The part-level record exposes the quality conditions and the process and material context behind them."],
-          ["50–70s", "Open CMM, torque, process, and supplier details", "The reviewer can inspect the source evidence instead of trusting an opaque score."],
-          ["70–85s", "Show one missing or failing state", "Missing traceability remains visible. The current product supports investigation; it does not automate containment."],
+          ["50–70s", "Open CMM, torque, process, and supplier details", "The reviewer can inspect each source record and understand how it joins to the part."],
+          ["70–85s", "Show one missing or failing state", "Missing traceability remains visible. Quality engineers retain containment decisions."],
         ] },
       },
       {
         title: "Safe claims and boundaries",
         state: "Current build",
-        table: { headers: ["Safe to say", "Do not say"], rows: [
+        table: { headers: ["Supported description", "Excluded claim"], rows: [
           ["The build connects four synthetic source families at part and batch grain", "It reduced production containment time or warranty cost"],
           ["The dashboard supports a part-level evidence review", "It automatically identifies every affected production part"],
           ["dbt tests protect implemented contracts", "Passing tests prove the physical quality rules are correct"],
