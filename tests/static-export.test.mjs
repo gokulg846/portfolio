@@ -20,9 +20,9 @@ const projectArtifacts = {
   "industrial-sensor-anomaly-detection": [
     "prd",
     "technical-design",
-    "evaluation",
     "model-card",
     "program-plan",
+    "evaluation",
   ],
   "continuous-compliance-gate": [
     "prd",

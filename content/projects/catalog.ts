@@ -1,5 +1,6 @@
 import type { ProjectCaseStudy } from "../types";
 import { defineProject, isPublic } from "../define";
+import { artifactJourney } from "../site";
 import { complianceArtifacts } from "./continuous-compliance-gate";
 import { sensorArtifacts } from "./industrial-sensor-anomaly-detection";
 import { manufacturingArtifacts } from "./manufacturing-quality-traceability";
@@ -145,5 +146,14 @@ export const projectBySlug = Object.fromEntries(projects.map((project) => [proje
 export const flagshipProjects = projects.filter((project) => project.placement === "flagship");
 export const additionalProjects = projects.filter((project) => project.placement === "additional");
 
+const artifactOrder = artifactJourney.flatMap((step) => step.slugs);
+
 export const publicArtifacts = (project: ProjectCaseStudy) =>
-  project.artifacts.filter((artifact) => artifact.visibility !== "private");
+  project.artifacts
+    .filter((artifact) => artifact.visibility !== "private")
+    .sort((left, right) => {
+      const leftIndex = artifactOrder.findIndex((slug) => slug === left.slug);
+      const rightIndex = artifactOrder.findIndex((slug) => slug === right.slug);
+      return (leftIndex === -1 ? Number.MAX_SAFE_INTEGER : leftIndex)
+        - (rightIndex === -1 ? Number.MAX_SAFE_INTEGER : rightIndex);
+    });
